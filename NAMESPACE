@@ -3,3 +3,5 @@
 export(dialogPage)
 export(fillPage)
 export(runGadget)
+export(tabstripLayout)
+import(shiny)
