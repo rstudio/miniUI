@@ -2,6 +2,9 @@
 
 export(dialogPage)
 export(fillPage)
+export(paddingPanel)
 export(runGadget)
 export(tabstripLayout)
+export(titlebarButton)
+export(titlebarLayout)
 import(shiny)

@@ -48,56 +48,65 @@ runGadget <- function(ui, server, port = getOption("shiny.port"),
 tabstripLayout <- function(..., height = "100%") {
   ts <- shiny:::buildTabset(list(...), "tabstrip")
 
-  tagList(
-    tags$head(
-      tags$style(type = "text/css", HTML("
-        .tabstrip-content-container {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: 0;
-        bottom: 51px;
-        }
-        .tabstrip-container {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 51px;
-        border-top: 1px solid #dddddd;
-        }
-        ul.tabstrip {
-        display: table;
-        width: 100%;
-        margin: 0;
-        padding: 0 12px;
-        }
-        ul.tabstrip>li {
-        display: table-cell;
-        width: 1%;
-        height: 50px;
-        vertical-align: middle;
-        }
-        ul.tabstrip>li.active>a {
-        color: #428bca;
-        }
-        ul.tabstrip>li>a {
-        display: block;
-        text-align: center;
-        color: #929292;
-        text-decoration: none;
-        font-size: 12px;
-        }
-        ul.tabstrip>li>a>i {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        font-size: 24px;
-        }
-        "))
+  htmltools::attachDependencies(
+    tagList(
+      div(class = "tabstrip-container", ts$navList),
+      div(class = "tabstrip-content-container", ts$content)
     ),
-    div(class = "tabstrip-container", ts$navList),
-    div(class = "tabstrip-content-container", ts$content)
+    gadgetDependencies()
   )
+}
+
+gadgetDependencies <- function() {
+  list(
+    htmltools::htmlDependency(
+      "shinygadgets",
+      packageVersion("shinygadgets"),
+      src = system.file("www", package = "shinygadgets"),
+      stylesheet = "shinygadgets.css"
+    )
+  )
+}
+
+#' @export
+titlebarButton <- function(inputId, label, primary = FALSE) {
+  buttonStyle <- if (isTRUE(primary)) {
+    "primary"
+  } else if (identical(primary, FALSE)) {
+    "default"
+  } else {
+    primary
+  }
+
+  tags$button(
+    id = inputId,
+    type = "button",
+    class = sprintf("btn btn-%s btn-sm action-button", buttonStyle),
+    label
+  )
+}
+
+#' @export
+titlebarLayout <- function(title, ..., left = NULL,
+  right = titlebarButton("done", "Done", primary = TRUE)) {
+
+  tags$div(class = "greedy",
+    tags$div(class = "titlestrip",
+      tags$h1(title),
+      if (!is.null(left)) {
+        tagAppendAttributes(left, class = "pull-left")
+      },
+      if (!is.null(right)) {
+        tagAppendAttributes(right, class = "pull-right")
+      }
+    ),
+    tags$div(class = "titlestrip-body",
+      ...
+    )
+  )
+}
+
+#' @export
+paddingPanel <- function(...) {
+  tags$div(class = "greedy padded", ...)
 }
