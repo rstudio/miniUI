@@ -28,15 +28,6 @@ collapseSizes <- function(padding) {
 }
 
 #' @export
-dialogPage <- function(..., padding = 0, buttons = "OK", title = NULL,
-  theme = NULL) {
-
-  ui <- list(...)
-
-  fillPage(ui, title = title, theme = theme)
-}
-
-#' @export
 runGadget <- function(ui, server, port = getOption("shiny.port"),
   launch.browser = getOption("viewer", TRUE)) {
 
@@ -46,12 +37,12 @@ runGadget <- function(ui, server, port = getOption("shiny.port"),
 
 #' @export
 tabstripLayout <- function(..., height = "100%") {
-  ts <- shiny:::buildTabset(list(...), "tabstrip")
+  ts <- shiny:::buildTabset(list(...), "gadget-tabs")
 
   htmltools::attachDependencies(
     tagList(
-      div(class = "tabstrip-container", ts$navList),
-      div(class = "tabstrip-content-container", ts$content)
+      div(class = "gadget-tabs-container", ts$navList),
+      div(class = "gadget-tabs-content-container", ts$content)
     ),
     gadgetDependencies()
   )
@@ -90,23 +81,31 @@ titlebarButton <- function(inputId, label, primary = FALSE) {
 titlebarLayout <- function(title, ..., left = NULL,
   right = titlebarButton("done", "Done", primary = TRUE)) {
 
-  tags$div(class = "greedy",
-    tags$div(class = "titlestrip",
-      tags$h1(title),
-      if (!is.null(left)) {
-        tagAppendAttributes(left, class = "pull-left")
-      },
-      if (!is.null(right)) {
-        tagAppendAttributes(right, class = "pull-right")
-      }
+  htmltools::attachDependencies(
+    tagList(
+      tags$div(class = "gadget-title",
+        tags$h1(title),
+        if (!is.null(left)) {
+          tagAppendAttributes(left, class = "pull-left")
+        },
+        if (!is.null(right)) {
+          tagAppendAttributes(right, class = "pull-right")
+        }
+      ),
+      tags$div(class = "gadget-title-body",
+        ...
+      )
     ),
-    tags$div(class = "titlestrip-body",
-      ...
-    )
+    gadgetDependencies()
   )
 }
 
 #' @export
-paddingPanel <- function(...) {
-  tags$div(class = "greedy padded", ...)
+paddedPanel <- function(...) {
+  tags$div(class = "gadget-padded", ...)
+}
+
+#' @export
+scrollPanel <- function(...) {
+  tags$div(class = "gadget-scroll", ...)
 }

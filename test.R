@@ -6,7 +6,7 @@ ui <- fillPage(
   titlebarLayout("Shiny gadget example",
     tabstripLayout(
       tabPanel("Parameters", icon = icon("sliders"),
-        paddingPanel(
+        paddedPanel(
           sliderInput("year", "Year", 1978, 2010, c(2000, 2010),
             sep = "")
         )
@@ -17,9 +17,10 @@ ui <- fillPage(
       tabPanel("Map", icon = icon("map-o"),
         leafletOutput("map", height = "100%")
       ),
-      tabPanel("Data", icon = icon("table"), paddingPanel(
-        DT::dataTableOutput("table")
-      ))
+      tabPanel("Data", icon = icon("table"), scrollPanel(
+        paddedPanel(
+          DT::dataTableOutput("table")
+      )))
     ),
     left = titlebarButton("cancel", "Cancel", FALSE)
   )
