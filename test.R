@@ -2,12 +2,6 @@ library(shiny)
 library(shinygadgets)
 library(leaflet)
 
-ts <- shiny:::buildTabset(
-  list(
-  ),
-  "tabstrip"
-)
-
 ui <- fillPage(
   titlebarLayout("Shiny gadget example",
     tabstripLayout(
