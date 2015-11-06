@@ -1,11 +1,14 @@
 Package: shinygadgets
 Type: Package
-Title: What the Package Does (Title Case)
+Title: UI Toolkit for Shiny
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Authors@R: c(
+    person("Joe", "Cheng", role = c("cre", "aut"), email = "joe@rstudio.com"),
+    person(family = "RStudio", role = "cph")
+    )
+Description: Provides functions for writing Shiny Gadgets: interactive tools
+    based on the Shiny web framework, that assist in data analysis tasks.
+License: GPL-3
 LazyData: TRUE
 Imports:
     shiny,

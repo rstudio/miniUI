@@ -1,0 +1,39 @@
+.gadget-tabs-container {
+	height: 51px;
+	border-top: @gadget-border;
+	ul.gadget-tabs {
+		.wh-fill;
+		list-style: none;
+		display: flex;
+		background-color: @gadget-chrome-bg;
+		margin: 0;
+		padding: 0;
+		align-items: center;
+		justify-content: center;
+		>li {
+			flex: 1;
+			>a {
+				display: block;
+				text-align: center;
+				color: @gray-light;
+				text-decoration: none;
+				font-size: 12px;
+				>i {
+					display: block;
+					margin: auto;
+					font-size: 24px;
+				}
+			}
+		}
+		>li.active>a {
+			color: @brand-primary;
+		}
+	}
+}
+.gadget-tabs-content-container {
+	position: relative;
+	flex: 1;
+	.tab-content, .tab-content .tab-pane {
+		.abs-fill;
+	}
+}

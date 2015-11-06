@@ -1,0 +1,31 @@
+@import "../tools/node_modules/bootstrap/less/variables.less";
+
+@import "variables.less";
+@import "mixins.less";
+@import "tabstrip.less";
+@import "titlebar.less";
+@import "block-button.less";
+
+html.fill-page, html.fill-page body {
+	.wh-fill;
+}
+
+.gadget-container {
+	display: flex;
+	flex-direction: column;
+	.wh-fill;
+}
+
+.gadget-content {
+	position: relative;
+	flex: 1;
+	height: 100%;
+}
+.gadget-scroll {
+	.wh-fill;
+	overflow: auto;
+}
+.gadget-padded {
+	.wh-fill;
+	padding: 10px;
+}

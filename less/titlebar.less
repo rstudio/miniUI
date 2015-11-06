@@ -1,0 +1,21 @@
+.gadget-title {
+	position: relative;
+	background-color: @gadget-chrome-bg;
+	height: @gadget-title-height;
+	border-bottom: @gadget-border;
+	padding: 0;
+	button.btn {
+		position: relative;
+		height: @gadget-title-height - (@gadget-title-padding * 2);
+		margin: @gadget-title-padding @gadget-title-padding 0;
+		z-index: 10;
+	}
+	h1 {
+		.abs-fill;
+		font-size: 17px;
+		text-align: center;
+		line-height: @gadget-title-height - 1px;
+		margin: 0;
+		z-index: 0;
+	}
+}

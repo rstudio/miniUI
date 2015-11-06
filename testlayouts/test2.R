@@ -8,6 +8,9 @@ ui <- gadgetPage(
   ),
   contentPanel(padding = 0,
     leafletOutput("map", height = "100%")
+  ),
+  buttonBlock(
+    actionButton("reset", "Reset bounds")
   )
 )
 
