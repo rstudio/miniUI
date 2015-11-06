@@ -6,23 +6,8 @@ ui <- gadgetPage(
   titlebar("Shiny gadget example",
     left = titlebarButton("cancel", "Cancel", FALSE)
   ),
-  tabstripPanel(
-    tabPanel("Parameters", icon = icon("sliders"),
-      contentPanel(
-        sliderInput("year", "Year", 1978, 2010, c(2000, 2010),
-          sep = "")
-      )
-    ),
-    tabPanel("Visualize", icon = icon("area-chart"),
-      plotOutput("cars", height = "100%")
-    ),
-    tabPanel("Map", icon = icon("map-o"),
-      leafletOutput("map", height = "100%")
-    ),
-    tabPanel("Data", icon = icon("table"), scrollPanel(
-      paddedPanel(
-        DT::dataTableOutput("table")
-      )))
+  contentPanel(padding = 0,
+    leafletOutput("map", height = "100%")
   )
 )
 
@@ -53,4 +38,4 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 #' @examples
 #' options(shiny.autoreload=TRUE)
-#' shiny::runApp("test.R", launch.browser = getOption("viewer", TRUE))
+#' shiny::runApp("test2.R", launch.browser = getOption("viewer", TRUE))

@@ -1,17 +1,19 @@
+.gadget-container {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
 .gadget-tabs-container {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
   height: 51px;
   border-top: 1px solid #dddddd;
 }
 .gadget-tabs-content-container {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 51px;
+  position: relative;
+  -webkit-box-flex: 1;
+  flex: 1;
 }
 ul.gadget-tabs {
   display: -webkit-box;
@@ -56,11 +58,8 @@ ul.gadget-tabs>li>a>i {
   padding: 10px;
 }
 .gadget-title {
+  position: relative;
   background-color: #f2f2f2;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
   height: 45px;
   border-bottom: 1px solid #ddd;
   padding: 0 8px;
@@ -83,16 +82,19 @@ ul.gadget-tabs>li>a>i {
   margin: 0;
   z-index: 0;
 }
-.gadget-title-body {
-  position: absolute;
-  top: 45px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
 .gadget-tabs-content-container .tab-content, .gadget-tabs-content-container .tab-content .tab-pane {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
   height: 100%;
 }
 .gadget-tabs {
   background-color: #f2f2f2;
+}
+.gadget-content {
+  position: relative;
+  -webkit-box-flex: 1;
+  flex: 1;
+  height: 100%;
 }

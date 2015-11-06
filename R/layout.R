@@ -21,6 +21,14 @@ fillPage <- function(..., padding = 0, title = NULL, bootstrap = TRUE,
   }
 }
 
+#' @export
+gadgetPage <- function(..., theme = NULL) {
+  fillPage(
+    tags$div(class = "gadget-container", ...),
+    theme = theme
+  )
+}
+
 collapseSizes <- function(padding) {
   paste(
     sapply(padding, shiny::validateCssUnit, USE.NAMES = FALSE),
@@ -36,13 +44,14 @@ runGadget <- function(ui, server, port = getOption("shiny.port"),
 }
 
 #' @export
-tabstripLayout <- function(..., height = "100%") {
+tabstripPanel <- function(..., between = NULL) {
   ts <- shiny:::buildTabset(list(...), "gadget-tabs")
 
   htmltools::attachDependencies(
     tagList(
-      div(class = "gadget-tabs-container", ts$navList),
-      div(class = "gadget-tabs-content-container", ts$content)
+      div(class = "gadget-tabs-content-container", ts$content),
+      between,
+      div(class = "gadget-tabs-container", ts$navList)
     ),
     gadgetDependencies()
   )
@@ -78,23 +87,18 @@ titlebarButton <- function(inputId, label, primary = FALSE) {
 }
 
 #' @export
-titlebarLayout <- function(title, ..., left = NULL,
+titlebar <- function(title, left = NULL,
   right = titlebarButton("done", "Done", primary = TRUE)) {
 
   htmltools::attachDependencies(
-    tagList(
-      tags$div(class = "gadget-title",
-        tags$h1(title),
-        if (!is.null(left)) {
-          tagAppendAttributes(left, class = "pull-left")
-        },
-        if (!is.null(right)) {
-          tagAppendAttributes(right, class = "pull-right")
-        }
-      ),
-      tags$div(class = "gadget-title-body",
-        ...
-      )
+    tags$div(class = "gadget-title",
+      tags$h1(title),
+      if (!is.null(left)) {
+        tagAppendAttributes(left, class = "pull-left")
+      },
+      if (!is.null(right)) {
+        tagAppendAttributes(right, class = "pull-right")
+      }
     ),
     gadgetDependencies()
   )
@@ -102,10 +106,47 @@ titlebarLayout <- function(title, ..., left = NULL,
 
 #' @export
 paddedPanel <- function(...) {
-  tags$div(class = "gadget-padded", ...)
+  htmltools::attachDependencies(
+    tags$div(class = "gadget-padded", ...),
+    gadgetDependencies()
+  )
 }
 
 #' @export
 scrollPanel <- function(...) {
-  tags$div(class = "gadget-scroll", ...)
+  htmltools::attachDependencies(
+    tags$div(class = "gadget-scroll", ...),
+    gadgetDependencies()
+  )
+}
+
+#' @export
+contentPanel <- function(..., padding = 10) {
+  htmltools::attachDependencies(
+    tags$div(class = "gadget-content",
+      tags$div(class = "gadget-absfill",
+        style = sprintf("position: absolute; %s;", paddingToPos(padding)),
+        ...
+      )
+    ),
+    gadgetDependencies()
+  )
+}
+
+paddingToPos <- function(padding) {
+  padding <- sapply(padding, shiny::validateCssUnit, USE.NAMES = FALSE)
+  sizes <- if (length(padding) == 0) {
+    rep_len("0", 4)
+  } else if (length(padding) == 1) {
+    rep_len(padding, 4)
+  } else if (length(padding) == 2) {
+    padding[c(1,2,1,2)]
+  } else if (length(padding) == 3) {
+    padding[c(1,2,3,2)]
+  } else {
+    padding[1:4]
+  }
+
+  props <- c("top", "right", "bottom", "left")
+  paste0(props, ":", sizes, ";", collapse = "")
 }
