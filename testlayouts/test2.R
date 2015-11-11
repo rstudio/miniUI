@@ -36,6 +36,13 @@ server <- function(input, output, session) {
   observeEvent(input$done, {
     stopApp(TRUE)
   })
+
+  observeEvent(input$reset, {
+    leafletProxy("map", data = quakes) %>% fitBounds(
+      ~min(long), ~min(lat),
+      ~max(long), ~max(lat)
+    )
+  })
 }
 
 shinyApp(ui, server)

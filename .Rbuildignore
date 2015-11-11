@@ -3,3 +3,4 @@
 ^less$
 ^testlayouts$
 ^tools$
+^.*\.o$
