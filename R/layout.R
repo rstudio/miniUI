@@ -228,24 +228,20 @@ gadgetDependencies <- function() {
   )
 }
 
-#' @export
-titlebarButton <- function(inputId, label, primary = FALSE) {
-  buttonStyle <- if (isTRUE(primary)) {
-    "primary"
-  } else if (identical(primary, FALSE)) {
-    "default"
-  } else {
-    primary
-  }
-
-  tags$button(
-    id = inputId,
-    type = "button",
-    class = sprintf("btn btn-%s btn-sm action-button", buttonStyle),
-    label
-  )
-}
-
+#' Create a title bar
+#'
+#' Creates a title bar for a Shiny Gadget. Intended to be used with
+#' \code{\link{gadgetPage}}. Title bars contain a title, and optionally, a
+#' \code{titlebarButton} on the left and/or right sides.
+#'
+#' @param title The title of the gadget. If this needs to be dynamic, pass
+#'   \code{\link[=shiny]{textOutput}} with \code{inline = TRUE}.
+#' @param left The \code{titlebarButton} to put on the left, or \code{NULL} for
+#'   none.
+#' @param right The \code{titlebarButton} to put on the right, or \code{NULL}
+#'   for none. Defaults to a primary "Done" button that can be handled using
+#'   \code{observeEvent(input$done, \{...\})}.
+#'
 #' @export
 titlebar <- function(title, left = NULL,
   right = titlebarButton("done", "Done", primary = TRUE)) {
@@ -261,6 +257,29 @@ titlebar <- function(title, left = NULL,
       }
     ),
     gadgetDependencies()
+  )
+}
+
+#' @param inputId The \code{input} slot that will be used to access the button.
+#' @param label The text label to display on the button.
+#' @param primary If \code{TRUE}, render the button in a bold color to indicate
+#'   that it is the primary action of the gadget.
+#' @rdname titlebar
+#' @export
+titlebarButton <- function(inputId, label, primary = FALSE) {
+  buttonStyle <- if (isTRUE(primary)) {
+    "primary"
+  } else if (identical(primary, FALSE)) {
+    "default"
+  } else {
+    primary
+  }
+
+  tags$button(
+    id = inputId,
+    type = "button",
+    class = sprintf("btn btn-%s btn-sm action-button", buttonStyle),
+    label
   )
 }
 
