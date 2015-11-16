@@ -97,12 +97,14 @@ fillPage <- function(..., padding = 0, title = NULL, bootstrap = TRUE,
 #'
 #' @param ... Elements to include within the page.
 #'
+#' @inheritParams fillPage
 #' @export
-gadgetPage <- function(..., theme = NULL) {
+gadgetPage <- function(..., title = NULL, theme = NULL) {
   htmltools::attachDependencies(
     tagList(
       fillPage(
         tags$div(class = "gadget-container", ...),
+        title = title,
         theme = theme
       )
     ),

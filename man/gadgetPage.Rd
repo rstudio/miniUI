@@ -4,10 +4,15 @@
 \alias{gadgetPage}
 \title{Page function for Shiny Gadgets}
 \usage{
-gadgetPage(..., theme = NULL)
+gadgetPage(..., title = NULL, theme = NULL)
 }
 \arguments{
 \item{...}{Elements to include within the page.}
+
+\item{title}{The title to use for the browser window/tab (it will not be
+shown in the document).}
+
+\item{theme}{URL to alternative Bootstrap stylesheet.}
 }
 \description{
 Designed to serve as the outermost function call for your gadget UI. Similar
