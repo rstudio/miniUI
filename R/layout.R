@@ -73,7 +73,7 @@ fillPage <- function(..., padding = 0, title = NULL, bootstrap = TRUE,
 
   fillCSS <- tags$head(tags$style(type = "text/css",
     "html, body { width: 100%; height: 100%; overflow: hidden; }",
-    sprintf("body { padding: %s; }", collapseSizes(padding))
+    sprintf("body { padding: %s; margin: 0; }", collapseSizes(padding))
   ))
 
   if (isTRUE(bootstrap)) {
@@ -87,11 +87,26 @@ fillPage <- function(..., padding = 0, title = NULL, bootstrap = TRUE,
   }
 }
 
+
+#' Page function for Shiny Gadgets
+#'
+#' Designed to serve as the outermost function call for your gadget UI. Similar
+#' to \code{\link{fillPage}}, but always includes the Bootstrap CSS library, and
+#' is designed to contain \code{\link{titlebar}}, \code{\link{tabstripPanel}},
+#' \code{\link{contentPanel}}, etc.
+#'
+#' @param ... Elements to include within the page.
+#'
 #' @export
 gadgetPage <- function(..., theme = NULL) {
-  fillPage(
-    tags$div(class = "gadget-container", ...),
-    theme = theme
+  htmltools::attachDependencies(
+    tagList(
+      fillPage(
+        tags$div(class = "gadget-container", ...),
+        theme = theme
+      )
+    ),
+    gadgetDependencies()
   )
 }
 
@@ -101,17 +116,96 @@ collapseSizes <- function(padding) {
     collapse = " ")
 }
 
+#' Run a gadget
+#'
+#' Similar to \code{runApp}, but if running in RStudio, defaults to viewing the
+#' app in the Viewer pane.
+#'
+#' @param app Either a Shiny app object as created by
+#'   \code{\link[=shiny]{shinyApp}} et al, or, a UI object.
+#' @param server Ignored if \code{app} is a Shiny app object; otherwise, passed
+#'   along to \code{shinyApp} (i.e. \code{shinyApp(ui = app, server = server)}).
+#' @param port See \code{\link[=shiny]{runApp}}.
+#' @param preferViewer Pass \code{TRUE} if the gadget is designed to work best
+#'   in the RStudio Viewer pane. The advantage of the Viewer pane is that it
+#'   sits conveniently inside the RStudio IDE. The disadvantage is its small
+#'   size, relative to standalone browser windows.
+#' @return The value returned by the gadget.
+#'
+#' @examples
+#' \dontrun{
+#' library(shiny)
+#'
+#' ui <- gadgetPage(...)
+#'
+#' server <- function(input, output, session) {
+#'   ...
+#' }
+#'
+#' # Either pass ui/server as separate arguments...
+#' runGadget(ui, server)
+#'
+#' # ...or as a single app object
+#' runGadget(shinyApp(ui, server))
+#' }
+#'
 #' @export
-runGadget <- function(ui, server, port = getOption("shiny.port"),
-  launch.browser = getOption("viewer", TRUE)) {
+runGadget <- function(app, server = NULL, port = getOption("shiny.port"),
+  preferViewer = TRUE) {
 
-  shiny::runApp(shinyApp(ui, server), port = port,
-    launch.browser = launch.browser)
+  if (!is.shiny.appobj(app)) {
+    app <- shinyApp(app, server)
+  }
+
+  launch.browser <- if (identical(preferViewer, TRUE)) {
+    getOption("viewer", TRUE)
+  } else if (identical(preferViewer, FALSE)) {
+    getOption("shiny.launch.browser", TRUE)
+  } else {
+    preferViewer
+  }
+
+  retVal <- withVisible(shiny::runApp(app, port = port, launch.browser = launch.browser))
+  if (retVal$visible)
+    retVal$value
+  else
+    invisible(retVal$value)
 }
 
+
+#' Create a tabstrip panel
+#'
+#' Create a tabstrip panel that contains \code{\link[=shiny]{tabPanel}}
+#' elements. Similar to \code{\link[=shiny]{tabsetPanel}}, but optimized for
+#' small page sizes like mobile devices or the RStudio Viewer pane.
+#'
+#' @param ... \code{\link[=shiny]{tabPanel}} elements to include in the tabset.
+#' @param id If provided, you can use \code{input$}\emph{\code{id}} in your
+#'   server logic to determine which of the current tabs is active. The value
+#'   will correspond to the \code{value} argument that is passed to
+#'   \code{\link{tabPanel}}.
+#' @param selected The \code{value} (or, if none was supplied, the \code{title})
+#'   of the tab that should be selected by default. If \code{NULL}, the first
+#'   tab will be selected.
+#' @param between A tag or list of tags that should be inserted between the
+#'   content (above) and tabstrip (below).
+#'
+#' @examples
+#' library(shiny)
+#'
+#' tabstripPanel(
+#'   tabPanel("Data",
+#'     selectInput("dataset", "Data set", ls("package:datasets"))),
+#'   tabPanel("Subset",
+#'     uiOutput("subset_ui")
+#'   )
+#' )
+#'
 #' @export
-tabstripPanel <- function(..., between = NULL) {
-  ts <- shiny:::buildTabset(list(...), "gadget-tabs")
+tabstripPanel <- function(..., id = NULL, selected = NULL, between = NULL) {
+  ts <- shiny:::buildTabset(list(...), "gadget-tabs", id = id,
+    selected = selected
+  )
 
   htmltools::attachDependencies(
     tagList(
@@ -220,4 +314,48 @@ paddingToPos <- function(padding) {
 #' @export
 buttonBlock <- function(..., border = "top") {
   tags$div(class = "gadget-block-button", ...)
+}
+
+
+cssList <- function(props) {
+  names(props) <- gsub("[._]", "-", tolower(gsub("([A-Z])", "-\\1", names(props))))
+  props <- props[names(props)[!sapply(props, is.null)]]
+  if (length(props) == 0)
+    ""
+  else
+    paste0(names(props), ":", props, ";", collapse = "")
+}
+
+flexboxContainer <- function(...,
+  flex_direction = c("row", "row-reverse", "column", "column-reverse"),
+  flex_wrap = c("nowrap", "wrap", "wrap-reverse"),
+  justify_content = c("flex-start", "flex-end", "center", "space-between", "space-around"),
+  align_items = c("stretch", "flex-start", "flex-end", "center", "baseline"),
+  align_content = c("stretch", "flex-start", "flex-end", "center", "space-between", "space-around")
+) {
+
+  style <- cssList(list(
+    display = "flex",
+    flex_direction = if (!missing(flex_direction)) flex_direction,
+    flex_wrap = if (!missing(flex_wrap)) flex_wrap,
+    justify_content = if (!missing(justify_content)) justify_content,
+    align_items = if (!missing(align_items)) align_items
+  ))
+
+  tags$div(style = style, ...)
+}
+
+flexboxItem <- function(...,
+  order = integer(1),
+  flex = "0 1 auto",
+  align_self = c("auto", "flex-start", "flex-end", "center", "baseline", "stretch")
+) {
+
+  style <- cssList(list(
+    order = if (!missing(order)) order,
+    flex = if (!missing(flex)) flex,
+    align_self = if (!missing(align_self)) align_self
+  ))
+
+  tags$div(style = style, ...)
 }

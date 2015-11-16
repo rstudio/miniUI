@@ -13,4 +13,4 @@ LazyData: TRUE
 Imports:
     shiny,
     htmltools
-RoxygenNote: 5.0.0
+RoxygenNote: 5.0.1
