@@ -330,9 +330,39 @@ paddingToPos <- function(padding) {
   paste0(props, ":", sizes, ";", collapse = "")
 }
 
+#' Create a block-level button container
+#'
+#' Creates a full-width container for one or more buttons. The horizontal space
+#' will be evenly divided among any buttons that are added.
+#'
+#' When using \code{buttonBlock} with a \code{tabstripPanel}, consider passing
+#' the \code{buttonBlock} to \code{tabstripPanel} as the \code{between}
+#' argument.
+#'
+#' @param ... One or more \code{\link[=shiny]{actionButton}} or
+#'   \code{\link[=shiny]{downloadButton}} objects.
+#' @param border Zero or more of \code{c("top", "bottom")}, indicating which
+#'   sides should have borders, if any.
+#'
+#' @examples
+#' library(shiny)
+#'
+#' buttonBlock(
+#'   actionButton("reset", "Reset to defaults"),
+#'   actionButton("clear", "Clear all")
+#' )
+#'
 #' @export
 buttonBlock <- function(..., border = "top") {
-  tags$div(class = "gadget-block-button", ...)
+  cssClass <- "gadget-block-button"
+  if (length(border) > 0) {
+    cssClass <- paste(collapse = " ", c(cssClass, paste0("gadget-block-button-", border)))
+  }
+
+  tags$div(
+    class = cssClass,
+    ...
+  )
 }
 
 
