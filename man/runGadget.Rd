@@ -16,10 +16,9 @@ along to \code{shinyApp} (i.e. \code{shinyApp(ui = app, server = server)}).}
 
 \item{port}{See \code{\link[=shiny]{runApp}}.}
 
-\item{preferViewer}{Pass \code{TRUE} if the gadget is designed to work best
-in the RStudio Viewer pane. The advantage of the Viewer pane is that it
-sits conveniently inside the RStudio IDE. The disadvantage is its small
-size, relative to standalone browser windows.}
+\item{viewer}{Specify where the gadget should be displayed--viewer pane,
+dialog window, or external browser--by passing in a call to one of the
+\code{\link{viewer}} functions.}
 }
 \value{
 The value returned by the gadget.
