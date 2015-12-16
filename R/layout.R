@@ -336,15 +336,6 @@ titlebarButton <- function(inputId, label, primary = FALSE) {
   )
 }
 
-#' @export
-paddedPanel <- function(...) {
-  htmltools::attachDependencies(
-    tags$div(class = "gadget-padded", ...),
-    gadgetDependencies()
-  )
-}
-
-#' @export
 scrollPanel <- function(...) {
   htmltools::attachDependencies(
     tags$div(class = "gadget-scroll", ...),
@@ -353,12 +344,16 @@ scrollPanel <- function(...) {
 }
 
 #' @export
-contentPanel <- function(..., padding = 10) {
+contentPanel <- function(..., padding = 10, scrollable = TRUE) {
+  container <- if (scrollable) scrollPanel else identity
+
   htmltools::attachDependencies(
-    tags$div(class = "gadget-content",
-      tags$div(class = "gadget-absfill",
-        style = sprintf("position: absolute; %s;", paddingToPos(padding)),
-        ...
+    container(
+      tags$div(class = "gadget-content",
+        tags$div(class = "gadget-absfill",
+          style = sprintf("position: absolute; %s;", paddingToPos(padding)),
+          ...
+        )
       )
     ),
     gadgetDependencies()

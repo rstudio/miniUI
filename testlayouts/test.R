@@ -1,6 +1,7 @@
 library(shiny)
 library(shinygadgets)
 library(leaflet)
+library(ggplot2)
 
 ui <- gadgetPage(
   titlebar("Shiny gadget example",
@@ -14,15 +15,20 @@ ui <- gadgetPage(
       )
     ),
     tabPanel("Visualize", icon = icon("area-chart"),
-      plotOutput("cars", height = "100%")
+      contentPanel(padding = 80,
+        plotOutput("cars", width = "100%", height = "100%")
+      )
     ),
     tabPanel("Map", icon = icon("map-o"),
-      leafletOutput("map", height = "100%")
+      contentPanel(padding = 0,
+        leafletOutput("map", height = "100%")
+      )
     ),
-    tabPanel("Data", icon = icon("table"), scrollPanel(
-      paddedPanel(
+    tabPanel("Data", icon = icon("table"),
+      contentPanel(
         DT::dataTableOutput("table")
-      )))
+      )
+    )
   )
 )
 
@@ -50,4 +56,4 @@ server <- function(input, output, session) {
   })
 }
 
-runGadget(shinyApp(ui, server))
+runGadget(shinyApp(ui, server), viewer = paneViewer())
