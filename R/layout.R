@@ -5,9 +5,9 @@ NULL
 #' Page function for Shiny Gadgets
 #'
 #' Designed to serve as the outermost function call for your gadget UI. Similar
-#' to \code{\link{fillPage}}, but always includes the Bootstrap CSS library, and
-#' is designed to contain \code{\link{titlebar}}, \code{\link{tabstripPanel}},
-#' \code{\link{contentPanel}}, etc.
+#' to \code{\link[shiny]{fillPage}}, but always includes the Bootstrap CSS
+#' library, and is designed to contain \code{\link{titlebar}},
+#' \code{\link{tabstripPanel}}, \code{\link{contentPanel}}, etc.
 #'
 #' @param ... Elements to include within the page.
 #' @param title The title to use for the browser window/tab (it will not be
@@ -253,6 +253,25 @@ scrollPanel <- function(...) {
   )
 }
 
+#' Create a content panel
+#'
+#' Creates a panel for containing arbitrary content within a flex box container.
+#' This is mainly useful within \code{\link{gadgetPage}} or a
+#' \code{\link{tabstripPanel}}'s \code{\link[shiny]{tabPanel}}. You can use
+#' \code{contentPanel} to introduce padding and/or scrolling, but even if
+#' padding/scrolling aren't needed, it's a good idea to wrap your custom content
+#' into \code{contentPanel} as it fixes some odd behavior with percentage-based
+#' heights.
+#'
+#' @param ... UI objects to be contained in the \code{contentPanel}. A single
+#'   htmlwidget or \code{\link[shiny]{plotOutput}} with \code{height="100\%"}
+#'   works well, as do
+#'   \code{\link[shiny]{fillRow}}/\code{\link[shiny]{fillCol}}.
+#' @param padding Amount of padding to apply. Can be numeric (in pixels) or
+#'   character (e.g. \code{"3em"}).
+#' @param scrollable If \code{TRUE}, then content large enough to overflow the
+#'   \code{contentPanel} will make scrollbars appear.
+#'
 #' @export
 contentPanel <- function(..., padding = 10, scrollable = TRUE) {
   container <- if (scrollable) scrollPanel else identity

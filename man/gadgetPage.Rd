@@ -16,8 +16,8 @@ shown in the document).}
 }
 \description{
 Designed to serve as the outermost function call for your gadget UI. Similar
-to \code{\link{fillPage}}, but always includes the Bootstrap CSS library, and
-is designed to contain \code{\link{titlebar}}, \code{\link{tabstripPanel}},
-\code{\link{contentPanel}}, etc.
+to \code{\link[shiny]{fillPage}}, but always includes the Bootstrap CSS
+library, and is designed to contain \code{\link{titlebar}},
+\code{\link{tabstripPanel}}, \code{\link{contentPanel}}, etc.
 }
 
