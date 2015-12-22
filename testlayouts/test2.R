@@ -45,7 +45,7 @@ server <- function(input, output, session) {
   })
 }
 
-shinyApp(ui, server)
+runGadget(ui, server, viewer = paneViewer())
 #' @examples
 #' options(shiny.autoreload=TRUE)
 #' shiny::runApp("test2.R", launch.browser = getOption("viewer", TRUE))
