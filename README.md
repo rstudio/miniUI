@@ -1,7 +1,8 @@
 # miniUI
 
-Provides UI widget and layout functions for writing Shiny apps
-that work well on small screens.
+Provides UI widget and layout functions for writing Shiny apps that work well on small screens.
+
+Inspired by the lovely [Ratchet](http://goratchet.com/) CSS framework, though currently miniUI doesn't use any of Ratchet's CSS code.
     
 ## Installing
 
