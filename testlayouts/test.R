@@ -1,5 +1,5 @@
 library(shiny)
-library(shinygadgets)
+library(miniUI)
 library(leaflet)
 library(ggplot2)
 

@@ -1,15 +1,12 @@
-# Shiny Gadgets
+# miniUI
 
-A package for R that helps you create interactive tools based on the Shiny web framework, that assist in data analysis tasks.
-
-Shiny _apps_ are usually used for communicating results to other people.
-
-Shiny _gadgets_ are used from the R console during data analysis, to assist in tedious or iterative tasks.
-
+Provides UI widget and layout functions for writing Shiny apps
+that work well on small screens.
+    
 ## Installing
 
 ```r
-devtools::install_github("rstudio/shinygadgets")
+devtools::install_github("rstudio/miniUI")
 ```
 
 ## Example
@@ -40,11 +37,4 @@ npm install
 ```sh
 cd tools
 grunt
-```
-
-### Building automatically when .less files change
-
-```sh
-cd tools
-grunt watch
 ```

@@ -1,13 +1,13 @@
-Package: shinygadgets
+Package: miniUI
 Type: Package
-Title: UI Toolkit for Shiny
+Title: UI Toolkit for Shiny, designed for constrained screen sizes
 Version: 0.1.0
 Authors@R: c(
     person("Joe", "Cheng", role = c("cre", "aut"), email = "joe@rstudio.com"),
     person(family = "RStudio", role = "cph")
     )
-Description: Provides functions for writing Shiny Gadgets: interactive tools
-    based on the Shiny web framework, that assist in data analysis tasks.
+Description: Provides UI widget and layout functions for writing Shiny apps
+    that work well on small screens.
 License: GPL-3
 LazyData: TRUE
 Imports:

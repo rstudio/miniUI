@@ -75,10 +75,10 @@ tabstripPanel <- function(..., id = NULL, selected = NULL, between = NULL) {
 gadgetDependencies <- function() {
   list(
     htmltools::htmlDependency(
-      "shinygadgets",
-      packageVersion("shinygadgets"),
-      src = system.file("www", package = "shinygadgets"),
-      stylesheet = "shinygadgets.css"
+      "miniUI",
+      packageVersion("miniUI"),
+      src = system.file("www", package = "miniUI"),
+      stylesheet = "miniUI.css"
     )
   )
 }
