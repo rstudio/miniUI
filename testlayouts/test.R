@@ -3,29 +3,29 @@ library(miniUI)
 library(leaflet)
 library(ggplot2)
 
-ui <- gadgetPage(
-  titlebar("Shiny gadget example",
-    left = titlebarButton("cancel", "Cancel", FALSE)
+ui <- miniPage(
+  miniTitleBar("Shiny gadget example",
+    left = miniTitleBarButton("cancel", "Cancel", FALSE)
   ),
-  tabstripPanel(
+  miniTabstripPanel(
     tabPanel("Parameters", icon = icon("sliders"),
-      contentPanel(
+      miniContentPanel(
         sliderInput("year", "Year", 1978, 2010, c(2000, 2010),
           sep = "")
       )
     ),
     tabPanel("Visualize", icon = icon("area-chart"),
-      contentPanel(padding = 80,
+      miniContentPanel(padding = 80,
         plotOutput("cars", width = "100%", height = "100%")
       )
     ),
     tabPanel("Map", icon = icon("map-o"),
-      contentPanel(padding = 0,
+      miniContentPanel(padding = 0,
         leafletOutput("map", height = "100%")
       )
     ),
     tabPanel("Data", icon = icon("table"),
-      contentPanel(
+      miniContentPanel(
         DT::dataTableOutput("table")
       )
     )

@@ -2,14 +2,14 @@ library(shiny)
 library(miniUI)
 library(leaflet)
 
-ui <- gadgetPage(
-  titlebar("Shiny gadget example",
-    left = titlebarButton("cancel", "Cancel", FALSE)
+ui <- miniPage(
+  miniTitleBar("Shiny gadget example",
+    left = miniTitleBarButton("cancel", "Cancel", FALSE)
   ),
-  contentPanel(padding = 0,
+  miniContentPanel(padding = 0,
     leafletOutput("map", height = "100%")
   ),
-  buttonBlock(
+  miniButtonBlock(
     actionButton("reset", "Reset bounds")
   )
 )

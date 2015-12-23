@@ -6,8 +6,8 @@ NULL
 #'
 #' Designed to serve as the outermost function call for your gadget UI. Similar
 #' to \code{\link[shiny]{fillPage}}, but always includes the Bootstrap CSS
-#' library, and is designed to contain \code{\link{titlebar}},
-#' \code{\link{tabstripPanel}}, \code{\link{contentPanel}}, etc.
+#' library, and is designed to contain \code{\link{miniTitleBar}},
+#' \code{\link{miniTabstripPanel}}, \code{\link{miniContentPanel}}, etc.
 #'
 #' @param ... Elements to include within the page.
 #' @param title The title to use for the browser window/tab (it will not be
@@ -15,7 +15,7 @@ NULL
 #' @param theme URL to alternative Bootstrap stylesheet.
 #'
 #' @export
-gadgetPage <- function(..., title = NULL, theme = NULL) {
+miniPage <- function(..., title = NULL, theme = NULL) {
   htmltools::attachDependencies(
     tagList(
       fillPage(
@@ -48,7 +48,7 @@ gadgetPage <- function(..., title = NULL, theme = NULL) {
 #' @examples
 #' library(shiny)
 #'
-#' tabstripPanel(
+#' miniTabstripPanel(
 #'   tabPanel("Data",
 #'     selectInput("dataset", "Data set", ls("package:datasets"))),
 #'   tabPanel("Subset",
@@ -57,7 +57,7 @@ gadgetPage <- function(..., title = NULL, theme = NULL) {
 #' )
 #'
 #' @export
-tabstripPanel <- function(..., id = NULL, selected = NULL, between = NULL) {
+miniTabstripPanel <- function(..., id = NULL, selected = NULL, between = NULL) {
   ts <- buildTabset(list(...), "gadget-tabs", id = id,
     selected = selected
   )
@@ -86,20 +86,20 @@ gadgetDependencies <- function() {
 #' Create a title bar
 #'
 #' Creates a title bar for a Shiny Gadget. Intended to be used with
-#' \code{\link{gadgetPage}}. Title bars contain a title, and optionally, a
-#' \code{titlebarButton} on the left and/or right sides.
+#' \code{\link{miniPage}}. Title bars contain a title, and optionally, a
+#' \code{miniTitleBarButton} on the left and/or right sides.
 #'
 #' @param title The title of the gadget. If this needs to be dynamic, pass
 #'   \code{\link[=shiny]{textOutput}} with \code{inline = TRUE}.
-#' @param left The \code{titlebarButton} to put on the left, or \code{NULL} for
-#'   none.
-#' @param right The \code{titlebarButton} to put on the right, or \code{NULL}
-#'   for none. Defaults to a primary "Done" button that can be handled using
-#'   \code{observeEvent(input$done, \{...\})}.
+#' @param left The \code{miniTitleBarButton} to put on the left, or \code{NULL}
+#'   for none.
+#' @param right The \code{miniTitleBarButton} to put on the right, or
+#'   \code{NULL} for none. Defaults to a primary "Done" button that can be
+#'   handled using \code{observeEvent(input$done, \{...\})}.
 #'
 #' @export
-titlebar <- function(title, left = NULL,
-  right = titlebarButton("done", "Done", primary = TRUE)) {
+miniTitleBar <- function(title, left = NULL,
+  right = miniTitleBarButton("done", "Done", primary = TRUE)) {
 
   htmltools::attachDependencies(
     tags$div(class = "gadget-title",
@@ -119,9 +119,9 @@ titlebar <- function(title, left = NULL,
 #' @param label The text label to display on the button.
 #' @param primary If \code{TRUE}, render the button in a bold color to indicate
 #'   that it is the primary action of the gadget.
-#' @rdname titlebar
+#' @rdname miniTitleBar
 #' @export
-titlebarButton <- function(inputId, label, primary = FALSE) {
+miniTitleBarButton <- function(inputId, label, primary = FALSE) {
   buttonStyle <- if (isTRUE(primary)) {
     "primary"
   } else if (identical(primary, FALSE)) {
@@ -148,24 +148,24 @@ scrollPanel <- function(...) {
 #' Create a content panel
 #'
 #' Creates a panel for containing arbitrary content within a flex box container.
-#' This is mainly useful within \code{\link{gadgetPage}} or a
-#' \code{\link{tabstripPanel}}'s \code{\link[shiny]{tabPanel}}. You can use
-#' \code{contentPanel} to introduce padding and/or scrolling, but even if
+#' This is mainly useful within \code{\link{miniPage}} or a
+#' \code{\link{miniTabstripPanel}}'s \code{\link[shiny]{tabPanel}}. You can use
+#' \code{miniContentPanel} to introduce padding and/or scrolling, but even if
 #' padding/scrolling aren't needed, it's a good idea to wrap your custom content
-#' into \code{contentPanel} as it fixes some odd behavior with percentage-based
-#' heights.
+#' into \code{miniContentPanel} as it fixes some odd behavior with
+#' percentage-based heights.
 #'
-#' @param ... UI objects to be contained in the \code{contentPanel}. A single
-#'   htmlwidget or \code{\link[shiny]{plotOutput}} with \code{height="100\%"}
-#'   works well, as do
+#' @param ... UI objects to be contained in the \code{miniContentPanel}. A
+#'   single htmlwidget or \code{\link[shiny]{plotOutput}} with
+#'   \code{height="100\%"} works well, as do
 #'   \code{\link[shiny]{fillRow}}/\code{\link[shiny]{fillCol}}.
 #' @param padding Amount of padding to apply. Can be numeric (in pixels) or
 #'   character (e.g. \code{"3em"}).
 #' @param scrollable If \code{TRUE}, then content large enough to overflow the
-#'   \code{contentPanel} will make scrollbars appear.
+#'   \code{miniContentPanel} will make scrollbars appear.
 #'
 #' @export
-contentPanel <- function(..., padding = 10, scrollable = TRUE) {
+miniContentPanel <- function(..., padding = 10, scrollable = TRUE) {
   container <- if (scrollable) scrollPanel else identity
 
   htmltools::attachDependencies(
@@ -204,9 +204,9 @@ paddingToPos <- function(padding) {
 #' Creates a full-width container for one or more buttons. The horizontal space
 #' will be evenly divided among any buttons that are added.
 #'
-#' When using \code{buttonBlock} with a \code{tabstripPanel}, consider passing
-#' the \code{buttonBlock} to \code{tabstripPanel} as the \code{between}
-#' argument.
+#' When using \code{miniButtonBlock} with a \code{miniTabstripPanel}, consider
+#' passing the \code{miniButtonBlock} to \code{miniTabstripPanel} as the
+#' \code{between} argument.
 #'
 #' @param ... One or more \code{\link[=shiny]{actionButton}} or
 #'   \code{\link[=shiny]{downloadButton}} objects.
@@ -216,13 +216,13 @@ paddingToPos <- function(padding) {
 #' @examples
 #' library(shiny)
 #'
-#' buttonBlock(
+#' miniButtonBlock(
 #'   actionButton("reset", "Reset to defaults"),
 #'   actionButton("clear", "Clear all")
 #' )
 #'
 #' @export
-buttonBlock <- function(..., border = "top") {
+miniButtonBlock <- function(..., border = "top") {
   cssClass <- "gadget-block-button"
   if (length(border) > 0) {
     cssClass <- paste(collapse = " ", c(cssClass, paste0("gadget-block-button-", border)))
