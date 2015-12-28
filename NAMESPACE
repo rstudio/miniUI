@@ -2,9 +2,11 @@
 
 export(miniButtonBlock)
 export(miniContentPanel)
+export(miniGadgetTitleBar)
 export(miniPage)
 export(miniTabstripPanel)
 export(miniTitleBar)
 export(miniTitleBarButton)
+export(miniTitleBarCancelButton)
 import(shiny)
 importFrom(htmltools,css)

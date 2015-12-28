@@ -98,8 +98,7 @@ gadgetDependencies <- function() {
 #'   handled using \code{observeEvent(input$done, \{...\})}.
 #'
 #' @export
-miniTitleBar <- function(title, left = NULL,
-  right = miniTitleBarButton("done", "Done", primary = TRUE)) {
+miniTitleBar <- function(title, left = NULL, right = NULL) {
 
   htmltools::attachDependencies(
     tags$div(class = "gadget-title",
@@ -113,6 +112,16 @@ miniTitleBar <- function(title, left = NULL,
     ),
     gadgetDependencies()
   )
+}
+
+#' @details \code{miniGadgetTitleBar} is a \code{miniTitleBar} with different
+#'   defaults: a Cancel button on the left and a Done button on the right.
+#' @rdname miniTitleBar
+#' @export
+miniGadgetTitleBar <- function(title, left = miniTitleBarCancelButton(),
+  right = miniTitleBarButton("done", "Done", primary = TRUE)) {
+
+  miniTitleBar(title, left, right)
 }
 
 #' @param inputId The \code{input} slot that will be used to access the button.
@@ -136,6 +145,26 @@ miniTitleBarButton <- function(inputId, label, primary = FALSE) {
     class = sprintf("btn btn-%s btn-sm action-button", buttonStyle),
     label
   )
+}
+
+#' @details \code{miniTitleBarCancelButton} is like \code{miniTitleBarButton},
+#'   but the user can also invoke it by hitting the Escape key.
+#' @rdname miniTitleBar
+#' @export
+miniTitleBarCancelButton <- function(inputId = "cancel", label = "Cancel",
+  primary = FALSE) {
+
+  escapeHandler <- singleton(tags$head(tags$script(sprintf(
+    "$(document).keydown(function(e) { if (e.keyCode === 27) $('#%s').click(); });",
+    jqueryEscape(inputId)
+  ))))
+
+  miniTitleBarButton(inputId, tagList(label, escapeHandler), primary)
+}
+
+jqueryEscape <- function(x) {
+  # https://learn.jquery.com/using-jquery-core/faq/how-do-i-select-an-element-by-an-id-that-has-characters-used-in-css-notation/
+  gsub("([.:])", "\\\\\\1", x)
 }
 
 scrollPanel <- function(...) {
