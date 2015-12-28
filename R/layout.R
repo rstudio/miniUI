@@ -94,8 +94,7 @@ gadgetDependencies <- function() {
 #' @param left The \code{miniTitleBarButton} to put on the left, or \code{NULL}
 #'   for none.
 #' @param right The \code{miniTitleBarButton} to put on the right, or
-#'   \code{NULL} for none. Defaults to a primary "Done" button that can be
-#'   handled using \code{observeEvent(input$done, \{...\})}.
+#'   \code{NULL} for none.
 #'
 #' @export
 miniTitleBar <- function(title, left = NULL, right = NULL) {
@@ -114,11 +113,14 @@ miniTitleBar <- function(title, left = NULL, right = NULL) {
   )
 }
 
-#' @details \code{miniGadgetTitleBar} is a \code{miniTitleBar} with different
-#'   defaults: a Cancel button on the left and a Done button on the right.
+#' @details \code{gadgetTitleBar} is a \code{miniTitleBar} with different
+#'   defaults: a Cancel button on the left and a Done button on the right. By
+#'   default, \code{\link[shiny]{runGadget}} will handle the Cancel button by
+#'   closing the gadget and raising an error, but the \code{Done} button must be
+#'   handled by the gadget author using \code{observeEvent(input$done, {...})}.
 #' @rdname miniTitleBar
 #' @export
-miniGadgetTitleBar <- function(title, left = miniTitleBarCancelButton(),
+gadgetTitleBar <- function(title, left = miniTitleBarCancelButton(),
   right = miniTitleBarButton("done", "Done", primary = TRUE)) {
 
   miniTitleBar(title, left, right)
@@ -160,6 +162,13 @@ miniTitleBarCancelButton <- function(inputId = "cancel", label = "Cancel",
   ))))
 
   miniTitleBarButton(inputId, tagList(label, escapeHandler), primary)
+}
+
+#' @export
+handleCancel <- function(inputId = "cancel", session = shiny::getDefaultReactiveDomain()) {
+  observeEvent(session$input[[inputId]], {
+    shiny::stopApp(stop("User cancel"))
+  }, domain = session)
 }
 
 jqueryEscape <- function(x) {
