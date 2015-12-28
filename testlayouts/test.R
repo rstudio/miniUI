@@ -45,10 +45,6 @@ server <- function(input, output, session) {
     diamonds
   })
 
-  observeEvent(input$cancel, {
-    stopApp(stop("Gadget cancelled"))
-  })
-
   observeEvent(input$done, {
     stopApp(TRUE)
   })

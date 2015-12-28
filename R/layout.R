@@ -164,13 +164,6 @@ miniTitleBarCancelButton <- function(inputId = "cancel", label = "Cancel",
   miniTitleBarButton(inputId, tagList(label, escapeHandler), primary)
 }
 
-#' @export
-handleCancel <- function(inputId = "cancel", session = shiny::getDefaultReactiveDomain()) {
-  observeEvent(session$input[[inputId]], {
-    shiny::stopApp(stop("User cancel"))
-  }, domain = session)
-}
-
 jqueryEscape <- function(x) {
   # https://learn.jquery.com/using-jquery-core/faq/how-do-i-select-an-element-by-an-id-that-has-characters-used-in-css-notation/
   gsub("([.:])", "\\\\\\1", x)
