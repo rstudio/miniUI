@@ -10,7 +10,7 @@ module.exports = function(grunt) {
           optimization: 2
         },
         files: {
-          "../inst/www/shinygadgets.css": "../less/gadgets.less" // destination file and source file
+          "../inst/www/miniUI.css": "../less/gadgets.less" // destination file and source file
         }
       }
     },
