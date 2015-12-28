@@ -4,9 +4,7 @@ library(leaflet)
 library(ggplot2)
 
 ui <- miniPage(
-  miniTitleBar("Shiny gadget example",
-    left = miniTitleBarButton("cancel", "Cancel", FALSE)
-  ),
+  gadgetTitleBar("Shiny gadget example"),
   miniTabstripPanel(
     tabPanel("Parameters", icon = icon("sliders"),
       miniContentPanel(

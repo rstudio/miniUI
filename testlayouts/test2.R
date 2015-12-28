@@ -3,9 +3,7 @@ library(miniUI)
 library(leaflet)
 
 ui <- miniPage(
-  miniTitleBar("Shiny gadget example",
-    left = miniTitleBarButton("cancel", "Cancel", FALSE)
-  ),
+  gadgetTitleBar("Shiny gadget example"),
   miniContentPanel(padding = 0,
     leafletOutput("map", height = "100%")
   ),
