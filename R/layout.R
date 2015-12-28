@@ -196,7 +196,7 @@ scrollPanel <- function(...) {
 #'   \code{miniContentPanel} will make scrollbars appear.
 #'
 #' @export
-miniContentPanel <- function(..., padding = 10, scrollable = TRUE) {
+miniContentPanel <- function(..., padding = 15, scrollable = TRUE) {
   container <- if (scrollable) scrollPanel else identity
 
   htmltools::attachDependencies(
