@@ -24,7 +24,7 @@ module.exports = function(grunt) {
             ]
         },
         dist: {
-            src: "../inst/www/shinygadgets.css"
+            src: "../inst/www/miniUI.css"
         }
     },
     watch: {
