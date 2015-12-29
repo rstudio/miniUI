@@ -19,8 +19,7 @@ server <- function(input, output, session) {
   })
 
   output$map <- renderLeaflet({
-    leaflet(quakes, height = "100%") %>% addTiles() %>%
-      addMarkers(label = ~as.character(mag), labelOptions = list(zIndex = 1000))
+    leaflet(quakes, height = "100%") %>% addTiles() %>% addMarkers()
   })
 
   output$table <- DT::renderDataTable({
