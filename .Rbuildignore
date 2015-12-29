@@ -1,6 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^less$
-^testlayouts$
+^examples$
 ^tools$
 ^.*\.o$
