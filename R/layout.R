@@ -1,5 +1,4 @@
 #' @import shiny
-#' @importFrom htmltools css
 NULL
 
 #' Page function for Shiny Gadgets

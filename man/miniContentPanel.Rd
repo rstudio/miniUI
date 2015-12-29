@@ -4,7 +4,7 @@
 \alias{miniContentPanel}
 \title{Create a content panel}
 \usage{
-miniContentPanel(..., padding = 10, scrollable = TRUE)
+miniContentPanel(..., padding = 15, scrollable = TRUE)
 }
 \arguments{
 \item{...}{UI objects to be contained in the \code{miniContentPanel}. A
