@@ -6,23 +6,26 @@ library(ggplot2)
 ui <- miniPage(
   gadgetTitleBar("Shiny gadget example"),
   miniTabstripPanel(
-    tabPanel("Parameters", icon = icon("sliders"),
+    miniTabPanel("Parameters", icon = icon("sliders"),
       miniContentPanel(
         sliderInput("year", "Year", 1978, 2010, c(2000, 2010),
           sep = "")
       )
     ),
-    tabPanel("Visualize", icon = icon("area-chart"),
+    miniTabPanel("Visualize", icon = icon("area-chart"),
       miniContentPanel(padding = 80,
         plotOutput("cars", width = "100%", height = "100%")
       )
     ),
-    tabPanel("Map", icon = icon("map-o"),
+    miniTabPanel("Map", icon = icon("map-o"),
       miniContentPanel(padding = 0,
         leafletOutput("map", height = "100%")
+      ),
+      miniButtonBlock(
+        actionButton("resetMap", "Reset")
       )
     ),
-    tabPanel("Data", icon = icon("table"),
+    miniTabPanel("Data", icon = icon("table"),
       miniContentPanel(
         DT::dataTableOutput("table")
       )
@@ -37,7 +40,10 @@ server <- function(input, output, session) {
   })
 
   output$map <- renderLeaflet({
-    leaflet(quakes, height = "100%") %>% addTiles() %>% addMarkers()
+    force(input$resetMap)
+
+    leaflet(quakes, height = "100%") %>% addTiles() %>%
+      addMarkers(lng = ~long, lat = ~lat)
   })
 
   output$table <- DT::renderDataTable({

@@ -33,7 +33,9 @@ miniPage <- function(..., title = NULL, theme = NULL) {
 #' elements. Similar to \code{\link[=shiny]{tabsetPanel}}, but optimized for
 #' small page sizes like mobile devices or the RStudio Viewer pane.
 #'
-#' @param ... \code{\link[=shiny]{tabPanel}} elements to include in the tabset.
+#' @param ... For \code{miniTabstripPanel}, \code{\link[=shiny]{miniTabPanel}}
+#'   elements to include in the tabset. For \code{miniTabPanel}, UI elements to
+#'   include within the tab.
 #' @param id If provided, you can use \code{input$}\emph{\code{id}} in your
 #'   server logic to determine which of the current tabs is active. The value
 #'   will correspond to the \code{value} argument that is passed to
@@ -48,9 +50,9 @@ miniPage <- function(..., title = NULL, theme = NULL) {
 #' library(shiny)
 #'
 #' miniTabstripPanel(
-#'   tabPanel("Data",
+#'   miniTabPanel("Data", icon = icon("table"),
 #'     selectInput("dataset", "Data set", ls("package:datasets"))),
-#'   tabPanel("Subset",
+#'   miniTabPanel("Subset", icon = icon("sliders"),
 #'     uiOutput("subset_ui")
 #'   )
 #' )
@@ -68,6 +70,19 @@ miniTabstripPanel <- function(..., id = NULL, selected = NULL, between = NULL) {
       div(class = "gadget-tabs-container", ts$navList)
     ),
     gadgetDependencies()
+  )
+}
+
+#' @param title Display title for tab.
+#' @param value The value that should be sent when \code{miniTabstripPanel}
+#'   reports that this tab is selected. If omitted and \code{miniTabstripPanel}
+#'   has an \code{id}, then the tab's title will be used as the value.
+#' @param icon Icon to appear on the tab; see \code{\link[shiny]{icon}}.
+#' @rdname miniTabstripPanel
+#' @export
+miniTabPanel <- function(title, ..., value = title, icon = NULL) {
+  tabPanel(title, value = title, icon = icon,
+    tags$div(class = "gadget-tabs-content-inner", ...)
   )
 }
 
