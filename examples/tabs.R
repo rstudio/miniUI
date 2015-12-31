@@ -8,13 +8,12 @@ ui <- miniPage(
   miniTabstripPanel(
     miniTabPanel("Parameters", icon = icon("sliders"),
       miniContentPanel(
-        sliderInput("year", "Year", 1978, 2010, c(2000, 2010),
-          sep = "")
+        sliderInput("year", "Year", 1978, 2010, c(2000, 2010), sep = "")
       )
     ),
     miniTabPanel("Visualize", icon = icon("area-chart"),
-      miniContentPanel(padding = 80,
-        plotOutput("cars", width = "100%", height = "100%")
+      miniContentPanel(
+        plotOutput("cars", height = "100%")
       )
     ),
     miniTabPanel("Map", icon = icon("map-o"),
