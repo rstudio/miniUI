@@ -29,17 +29,18 @@ miniPage <- function(..., title = NULL, theme = NULL) {
 
 #' Create a tabstrip panel
 #'
-#' Create a tabstrip panel that contains \code{\link[=shiny]{tabPanel}}
-#' elements. Similar to \code{\link[=shiny]{tabsetPanel}}, but optimized for
-#' small page sizes like mobile devices or the RStudio Viewer pane.
+#' \code{miniTabstripPanel} is a tabstrip panel that contains
+#' \code{miniTabPanel} elements. Similar to \code{\link[=shiny]{tabsetPanel}},
+#' but optimized for small page sizes like mobile devices or the RStudio Viewer
+#' pane.
 #'
-#' @param ... For \code{miniTabstripPanel}, \code{\link[=shiny]{miniTabPanel}}
-#'   elements to include in the tabset. For \code{miniTabPanel}, UI elements to
-#'   include within the tab.
+#' @param ... For \code{miniTabstripPanel}, \code{miniTabPanel} elements to
+#'   include in the tabset. For \code{miniTabPanel}, UI elements to include
+#'   within the tab.
 #' @param id If provided, you can use \code{input$}\emph{\code{id}} in your
 #'   server logic to determine which of the current tabs is active. The value
 #'   will correspond to the \code{value} argument that is passed to
-#'   \code{\link{tabPanel}}.
+#'   \code{\link{miniTabPanel}}.
 #' @param selected The \code{value} (or, if none was supplied, the \code{title})
 #'   of the tab that should be selected by default. If \code{NULL}, the first
 #'   tab will be selected.
@@ -194,11 +195,10 @@ scrollPanel <- function(...) {
 #'
 #' Creates a panel for containing arbitrary content within a flex box container.
 #' This is mainly useful within \code{\link{miniPage}} or a
-#' \code{\link{miniTabstripPanel}}'s \code{\link[shiny]{tabPanel}}. You can use
-#' \code{miniContentPanel} to introduce padding and/or scrolling, but even if
-#' padding/scrolling aren't needed, it's a good idea to wrap your custom content
-#' into \code{miniContentPanel} as it fixes some odd behavior with
-#' percentage-based heights.
+#' \code{\link{miniTabPanel}}. You can use \code{miniContentPanel} to introduce
+#' padding and/or scrolling, but even if padding/scrolling aren't needed, it's a
+#' good idea to wrap your custom content into \code{miniContentPanel} as it
+#' fixes some odd behavior with percentage-based heights.
 #'
 #' @param ... UI objects to be contained in the \code{miniContentPanel}. A
 #'   single htmlwidget or \code{\link[shiny]{plotOutput}} with

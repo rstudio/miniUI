@@ -21,10 +21,9 @@ character (e.g. \code{"3em"}).}
 \description{
 Creates a panel for containing arbitrary content within a flex box container.
 This is mainly useful within \code{\link{miniPage}} or a
-\code{\link{miniTabstripPanel}}'s \code{\link[shiny]{tabPanel}}. You can use
-\code{miniContentPanel} to introduce padding and/or scrolling, but even if
-padding/scrolling aren't needed, it's a good idea to wrap your custom content
-into \code{miniContentPanel} as it fixes some odd behavior with
-percentage-based heights.
+\code{\link{miniTabPanel}}. You can use \code{miniContentPanel} to introduce
+padding and/or scrolling, but even if padding/scrolling aren't needed, it's a
+good idea to wrap your custom content into \code{miniContentPanel} as it
+fixes some odd behavior with percentage-based heights.
 }
 
