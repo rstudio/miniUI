@@ -1,16 +1,21 @@
 # miniUI
 
-Provides UI widget and layout functions for writing Shiny apps that work well on small screens.
+Provides UI widget and layout functions for writing Shiny apps that work well on small screens. Designed to work especially well with Shiny Gadgets.
 
 Inspired by the lovely [Ratchet](http://goratchet.com/) CSS framework, though currently miniUI doesn't use any of Ratchet's CSS code.
 
-## Installing
+### Installing
 
 ```r
 devtools::install_github("rstudio/miniUI")
 ```
 
-## Example
+### Getting started
+
+Check out the [Designing Gadget UI](http://shiny.rstudio.com/articles/gadget-ui.html) article on [shiny.rstudio.com](http://shiny.rstudio.com/).
+
+
+### Example
 
 ![Screenshot](examples/tabs.gif)
 
@@ -49,11 +54,11 @@ Full source at: https://github.com/rstudio/miniUI/blob/master/examples/tabs.R
 
 ---
 
-## Compiling Less source to CSS
+### Compiling [Less](http://lesscss.org/) source to CSS
 
 **You generally don't need to do this.** This build step is only needed if you want to contribute to the development of the package by modifying the built-in CSS styles.
 
-### One-time setup
+#### One-time setup
 
 **Prerequisite:** You must have Node.js installed.
 
@@ -66,7 +71,7 @@ cd tools
 npm install
 ```
 
-### Building
+#### Building
 
 ```sh
 cd tools
