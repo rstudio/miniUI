@@ -1,6 +1,6 @@
 # miniUI
 
-Provides UI widget and layout functions for writing Shiny apps that work well on small screens. Designed to work especially well with Shiny Gadgets.
+Provides UI widget and layout functions for writing Shiny apps that work well on small screens. Designed to work especially well for creating Shiny Gadgets.
 
 Inspired by the lovely [Ratchet](http://goratchet.com/) CSS framework, though currently miniUI doesn't use any of Ratchet's CSS code.
 
@@ -51,6 +51,10 @@ ui <- miniPage(
 ```
 
 Full source at: https://github.com/rstudio/miniUI/blob/master/examples/tabs.R
+
+### License
+
+The miniUI package is licensed under the [GPLv3](http://www.gnu.org/licenses/gpl-3.0.en.html).
 
 ---
 
