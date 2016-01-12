@@ -1,6 +1,6 @@
 Package: miniUI
 Type: Package
-Title: UI Toolkit for Shiny, designed for constrained screen sizes
+Title: Shiny UI Widgets for Small Screens
 Version: 0.1.0
 Authors@R: c(
     person("Joe", "Cheng", role = c("cre", "aut"), email = "joe@rstudio.com"),
