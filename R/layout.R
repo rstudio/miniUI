@@ -99,7 +99,7 @@ gadgetDependencies <- function() {
   list(
     htmltools::htmlDependency(
       "miniUI",
-      packageVersion("miniUI"),
+      utils::packageVersion("miniUI"),
       src = system.file("www", package = "miniUI"),
       stylesheet = "miniUI.css"
     )

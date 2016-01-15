@@ -1,7 +1,7 @@
 Package: miniUI
 Type: Package
 Title: Shiny UI Widgets for Small Screens
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(
     person("Joe", "Cheng", role = c("cre", "aut"), email = "joe@rstudio.com"),
     person(family = "RStudio", role = "cph")
@@ -12,5 +12,6 @@ License: GPL-3
 LazyData: TRUE
 Imports:
     shiny (>= 0.13),
-    htmltools (>= 0.3)
+    htmltools (>= 0.3),
+    utils
 RoxygenNote: 5.0.1
