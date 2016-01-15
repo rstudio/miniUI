@@ -26,4 +26,17 @@ padding and/or scrolling, but even if padding/scrolling aren't needed, it's a
 good idea to wrap your custom content into \code{miniContentPanel} as it
 fixes some odd behavior with percentage-based heights.
 }
+\examples{
+library(shiny)
+
+miniContentPanel(padding = 0,
+  plotOutput("plot", height = "100\%")
+)
+
+}
+\seealso{
+For more information, see the
+  \href{http://shiny.rstudio.com/articles/gadget-ui.html}{Designing
+  Gadget UI} article on shiny.rstudio.com.
+}
 

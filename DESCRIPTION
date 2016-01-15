@@ -11,6 +11,6 @@ Description: Provides UI widget and layout functions for writing Shiny apps
 License: GPL-3
 LazyData: TRUE
 Imports:
-    shiny (>= 0.12.2.9009),
+    shiny (>= 0.13),
     htmltools (>= 0.3)
 RoxygenNote: 5.0.1

@@ -13,6 +13,10 @@ NULL
 #'   shown in the document).
 #' @param theme URL to alternative Bootstrap stylesheet.
 #'
+#' @seealso For more information, see the
+#'   \href{http://shiny.rstudio.com/articles/gadget-ui.html}{Designing
+#'   Gadget UI} article on shiny.rstudio.com.
+#'
 #' @export
 miniPage <- function(..., title = NULL, theme = NULL) {
   htmltools::attachDependencies(
@@ -46,6 +50,10 @@ miniPage <- function(..., title = NULL, theme = NULL) {
 #'   tab will be selected.
 #' @param between A tag or list of tags that should be inserted between the
 #'   content (above) and tabstrip (below).
+#'
+#' @seealso For more information, see the
+#'   \href{http://shiny.rstudio.com/articles/gadget-ui.html}{Designing
+#'   Gadget UI} article on shiny.rstudio.com.
 #'
 #' @examples
 #' library(shiny)
@@ -100,7 +108,7 @@ gadgetDependencies <- function() {
 
 #' Create a title bar
 #'
-#' Creates a title bar for a Shiny Gadget. Intended to be used with
+#' Creates a title bar for a Shiny app or Shiny Gadget. Intended to be used with
 #' \code{\link{miniPage}}. Title bars contain a title, and optionally, a
 #' \code{miniTitleBarButton} on the left and/or right sides.
 #'
@@ -110,6 +118,16 @@ gadgetDependencies <- function() {
 #'   for none.
 #' @param right The \code{miniTitleBarButton} to put on the right, or
 #'   \code{NULL} for none.
+#'
+#' @seealso For more information, see the
+#'   \href{http://shiny.rstudio.com/articles/gadget-ui.html}{Designing
+#'   Gadget UI} article on shiny.rstudio.com.
+#'
+#' @examples
+#' miniTitleBar("My App",
+#'   left = miniTitleBarButton("prev", "Previous"),
+#'   right = miniTitleBarButton("next", "Next")
+#' )
 #'
 #' @export
 miniTitleBar <- function(title, left = NULL, right = NULL) {
@@ -209,6 +227,17 @@ scrollPanel <- function(...) {
 #' @param scrollable If \code{TRUE}, then content large enough to overflow the
 #'   \code{miniContentPanel} will make scrollbars appear.
 #'
+#' @seealso For more information, see the
+#'   \href{http://shiny.rstudio.com/articles/gadget-ui.html}{Designing
+#'   Gadget UI} article on shiny.rstudio.com.
+#'
+#' @examples
+#' library(shiny)
+#'
+#' miniContentPanel(padding = 0,
+#'   plotOutput("plot", height = "100%")
+#' )
+#'
 #' @export
 miniContentPanel <- function(..., padding = 15, scrollable = TRUE) {
   container <- if (scrollable) scrollPanel else identity
@@ -257,6 +286,10 @@ paddingToPos <- function(padding) {
 #'   \code{\link[=shiny]{downloadButton}} objects.
 #' @param border Zero or more of \code{c("top", "bottom")}, indicating which
 #'   sides should have borders, if any.
+#'
+#' @seealso For more information, see the
+#'   \href{http://shiny.rstudio.com/articles/gadget-ui.html}{Designing
+#'   Gadget UI} article on shiny.rstudio.com.
 #'
 #' @examples
 #' library(shiny)

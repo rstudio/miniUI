@@ -35,7 +35,7 @@ for none.}
 that it is the primary action of the gadget.}
 }
 \description{
-Creates a title bar for a Shiny Gadget. Intended to be used with
+Creates a title bar for a Shiny app or Shiny Gadget. Intended to be used with
 \code{\link{miniPage}}. Title bars contain a title, and optionally, a
 \code{miniTitleBarButton} on the left and/or right sides.
 }
@@ -48,5 +48,17 @@ Creates a title bar for a Shiny Gadget. Intended to be used with
 
 \code{miniTitleBarCancelButton} is like \code{miniTitleBarButton},
   but the user can also invoke it by hitting the Escape key.
+}
+\examples{
+miniTitleBar("My App",
+  left = miniTitleBarButton("prev", "Previous"),
+  right = miniTitleBarButton("next", "Next")
+)
+
+}
+\seealso{
+For more information, see the
+  \href{http://shiny.rstudio.com/articles/gadget-ui.html}{Designing
+  Gadget UI} article on shiny.rstudio.com.
 }
 
