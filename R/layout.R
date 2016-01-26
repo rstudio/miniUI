@@ -90,7 +90,7 @@ miniTabstripPanel <- function(..., id = NULL, selected = NULL, between = NULL) {
 #' @rdname miniTabstripPanel
 #' @export
 miniTabPanel <- function(title, ..., value = title, icon = NULL) {
-  tabPanel(title, value = title, icon = icon,
+  tabPanel(title, value = value, icon = icon,
     tags$div(class = "gadget-tabs-content-inner", ...)
   )
 }
