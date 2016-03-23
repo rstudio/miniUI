@@ -68,7 +68,7 @@ miniPage <- function(..., title = NULL, theme = NULL) {
 #'
 #' @export
 miniTabstripPanel <- function(..., id = NULL, selected = NULL, between = NULL) {
-  ts <- buildTabset(list(...), "gadget-tabs", id = id,
+  ts <- buildTabset(list(...), "nav gadget-tabs", id = id,
     selected = selected
   )
 
