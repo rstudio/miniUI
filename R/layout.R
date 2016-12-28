@@ -34,7 +34,7 @@ miniPage <- function(..., title = NULL, theme = NULL) {
 #' Create a tabstrip panel
 #'
 #' \code{miniTabstripPanel} is a tabstrip panel that contains
-#' \code{miniTabPanel} elements. Similar to \code{\link[=shiny]{tabsetPanel}},
+#' \code{miniTabPanel} elements. Similar to \code{\link[shiny]{tabsetPanel}},
 #' but optimized for small page sizes like mobile devices or the RStudio Viewer
 #' pane.
 #'
@@ -113,7 +113,7 @@ gadgetDependencies <- function() {
 #' \code{miniTitleBarButton} on the left and/or right sides.
 #'
 #' @param title The title of the gadget. If this needs to be dynamic, pass
-#'   \code{\link[=shiny]{textOutput}} with \code{inline = TRUE}.
+#'   \code{\link[shiny]{textOutput}} with \code{inline = TRUE}.
 #' @param left The \code{miniTitleBarButton} to put on the left, or \code{NULL}
 #'   for none.
 #' @param right The \code{miniTitleBarButton} to put on the right, or
@@ -282,8 +282,8 @@ paddingToPos <- function(padding) {
 #' passing the \code{miniButtonBlock} to \code{miniTabstripPanel} as the
 #' \code{between} argument.
 #'
-#' @param ... One or more \code{\link[=shiny]{actionButton}} or
-#'   \code{\link[=shiny]{downloadButton}} objects.
+#' @param ... One or more \code{\link[shiny]{actionButton}} or
+#'   \code{\link[shiny]{downloadButton}} objects.
 #' @param border Zero or more of \code{c("top", "bottom")}, indicating which
 #'   sides should have borders, if any.
 #'
