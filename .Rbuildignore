@@ -2,5 +2,6 @@
 ^\.Rproj\.user$
 ^less$
 ^examples$
-^tools$
+^tools/Gruntfile.js$
+^tools/package.json$
 ^.*\.o$

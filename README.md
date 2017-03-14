@@ -17,7 +17,7 @@ Check out the [Designing Gadget UI](http://shiny.rstudio.com/articles/gadget-ui.
 
 ### Example
 
-![Screenshot](examples/tabs.gif)
+![Screenshot](tools/tabs.gif)
 
 ```r
 ui <- miniPage(
