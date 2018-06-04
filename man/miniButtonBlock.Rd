@@ -7,8 +7,8 @@
 miniButtonBlock(..., border = "top")
 }
 \arguments{
-\item{...}{One or more \code{\link[=shiny]{actionButton}} or
-\code{\link[=shiny]{downloadButton}} objects.}
+\item{...}{One or more \code{\link[shiny]{actionButton}} or
+\code{\link[shiny]{downloadButton}} objects.}
 
 \item{border}{Zero or more of \code{c("top", "bottom")}, indicating which
 sides should have borders, if any.}

@@ -36,7 +36,7 @@ has an \code{id}, then the tab's title will be used as the value.}
 }
 \description{
 \code{miniTabstripPanel} is a tabstrip panel that contains
-\code{miniTabPanel} elements. Similar to \code{\link[=shiny]{tabsetPanel}},
+\code{miniTabPanel} elements. Similar to \code{\link[shiny]{tabsetPanel}},
 but optimized for small page sizes like mobile devices or the RStudio Viewer
 pane.
 }

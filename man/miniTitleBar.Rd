@@ -19,7 +19,7 @@ miniTitleBarCancelButton(inputId = "cancel", label = "Cancel",
 }
 \arguments{
 \item{title}{The title of the gadget. If this needs to be dynamic, pass
-\code{\link[=shiny]{textOutput}} with \code{inline = TRUE}.}
+\code{\link[shiny]{textOutput}} with \code{inline = TRUE}.}
 
 \item{left}{The \code{miniTitleBarButton} to put on the left, or \code{NULL}
 for none.}
