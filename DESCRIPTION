@@ -9,6 +9,8 @@ Authors@R: c(
 Description: Provides UI widget and layout functions for writing Shiny apps
     that work well on small screens.
 License: GPL-3
+URL: https://github.com/rstudio/miniUI
+BugReports: https://github.com/rstudio/miniUI/issues
 Imports:
     shiny (>= 0.13),
     htmltools (>= 0.3),
