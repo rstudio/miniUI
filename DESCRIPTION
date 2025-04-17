@@ -1,7 +1,7 @@
 Package: miniUI
 Type: Package
 Title: Shiny UI Widgets for Small Screens
-Version: 0.1.1.1
+Version: 0.1.2
 Authors@R: c(
     person("Joe", "Cheng", role = c("cre", "aut"), email = "joe@rstudio.com"),
     person(family = "RStudio", role = "cph")
