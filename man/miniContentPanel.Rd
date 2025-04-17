@@ -8,9 +8,9 @@ miniContentPanel(..., padding = 15, scrollable = TRUE)
 }
 \arguments{
 \item{...}{UI objects to be contained in the \code{miniContentPanel}. A
-single htmlwidget or \code{\link[shiny:plotOutput]{plotOutput}} with
+single htmlwidget or \code{\link[shiny:plotOutput]{shiny::plotOutput()}} with
 \code{height="100\%"} works well, as do
-\code{\link[shiny:fillRow]{fillRow}}/\code{\link[shiny:fillCol]{fillCol}}.}
+\code{\link[shiny:fillRow]{shiny::fillRow()}}/\code{\link[shiny:fillRow]{shiny::fillCol()}}.}
 
 \item{padding}{Amount of padding to apply. Can be numeric (in pixels) or
 character (e.g. \code{"3em"}).}
@@ -20,8 +20,8 @@ character (e.g. \code{"3em"}).}
 }
 \description{
 Creates a panel for containing arbitrary content within a flex box container.
-This is mainly useful within \code{\link{miniPage}} or a
-\code{\link{miniTabPanel}}. You can use \code{miniContentPanel} to introduce
+This is mainly useful within \code{\link[=miniPage]{miniPage()}} or a
+\code{\link[=miniTabPanel]{miniTabPanel()}}. You can use \code{miniContentPanel} to introduce
 padding and/or scrolling, but even if padding/scrolling aren't needed, it's a
 good idea to wrap your custom content into \code{miniContentPanel} as it
 fixes some odd behavior with percentage-based heights.
@@ -36,6 +36,6 @@ miniContentPanel(padding = 0,
 }
 \seealso{
 For more information, see the
-  \href{http://shiny.rstudio.com/articles/gadget-ui.html}{Designing
-  Gadget UI} article on shiny.rstudio.com.
+\href{http://shiny.rstudio.com/articles/gadget-ui.html}{Designing Gadget UI}
+article on shiny.rstudio.com.
 }

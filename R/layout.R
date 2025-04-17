@@ -4,9 +4,9 @@ NULL
 #' Page function for Shiny Gadgets
 #'
 #' Designed to serve as the outermost function call for your gadget UI. Similar
-#' to \code{\link[shiny:fillPage]{fillPage}}, but always includes the Bootstrap CSS
-#' library, and is designed to contain \code{\link{miniTitleBar}},
-#' \code{\link{miniTabstripPanel}}, \code{\link{miniContentPanel}}, etc.
+#' to [shiny::fillPage()], but always includes the Bootstrap CSS
+#' library, and is designed to contain [miniTitleBar()],
+#' [miniTabstripPanel()], [miniContentPanel()], etc.
 #'
 #' @param ... Elements to include within the page.
 #' @param title The title to use for the browser window/tab (it will not be
@@ -14,8 +14,8 @@ NULL
 #' @param theme URL to alternative Bootstrap stylesheet.
 #'
 #' @seealso For more information, see the
-#'   \href{http://shiny.rstudio.com/articles/gadget-ui.html}{Designing
-#'   Gadget UI} article on shiny.rstudio.com.
+#'   [Designing Gadget UI](http://shiny.rstudio.com/articles/gadget-ui.html)
+#'   article on shiny.rstudio.com.
 #'
 #' @export
 miniPage <- function(..., title = NULL, theme = NULL) {
@@ -33,27 +33,27 @@ miniPage <- function(..., title = NULL, theme = NULL) {
 
 #' Create a tabstrip panel
 #'
-#' \code{miniTabstripPanel} is a tabstrip panel that contains
-#' \code{miniTabPanel} elements. Similar to
-#' \code{\link[shiny:tabsetPanel]{tabsetPanel}}, but optimized for small page
+#' `miniTabstripPanel` is a tabstrip panel that contains
+#' `miniTabPanel` elements. Similar to
+#' [shiny::tabsetPanel()], but optimized for small page
 #' sizes like mobile devices or the RStudio Viewer pane.
 #'
-#' @param ... For \code{miniTabstripPanel}, \code{miniTabPanel} elements to
-#'   include in the tabset. For \code{miniTabPanel}, UI elements to include
+#' @param ... For `miniTabstripPanel`, `miniTabPanel` elements to
+#'   include in the tabset. For `miniTabPanel`, UI elements to include
 #'   within the tab.
-#' @param id If provided, you can use \code{input$}\emph{\code{id}} in your
+#' @param id If provided, you can use `input$id` in your
 #'   server logic to determine which of the current tabs is active. The value
-#'   will correspond to the \code{value} argument that is passed to
-#'   \code{\link{miniTabPanel}}.
-#' @param selected The \code{value} (or, if none was supplied, the \code{title})
-#'   of the tab that should be selected by default. If \code{NULL}, the first
+#'   will correspond to the `value` argument that is passed to
+#'   [miniTabPanel()].
+#' @param selected The `value` (or, if none was supplied, the `title`)
+#'   of the tab that should be selected by default. If `NULL`, the first
 #'   tab will be selected.
 #' @param between A tag or list of tags that should be inserted between the
 #'   content (above) and tabstrip (below).
 #'
 #' @seealso For more information, see the
-#'   \href{http://shiny.rstudio.com/articles/gadget-ui.html}{Designing
-#'   Gadget UI} article on shiny.rstudio.com.
+#'   [Designing Gadget UI](http://shiny.rstudio.com/articles/gadget-ui.html)
+#'   article on shiny.rstudio.com.
 #'
 #' @examples
 #' library(shiny)
@@ -83,10 +83,10 @@ miniTabstripPanel <- function(..., id = NULL, selected = NULL, between = NULL) {
 }
 
 #' @param title Display title for tab.
-#' @param value The value that should be sent when \code{miniTabstripPanel}
-#'   reports that this tab is selected. If omitted and \code{miniTabstripPanel}
-#'   has an \code{id}, then the tab's title will be used as the value.
-#' @param icon Icon to appear on the tab; see \code{\link[shiny:icon]{icon}}.
+#' @param value The value that should be sent when `miniTabstripPanel`
+#'   reports that this tab is selected. If omitted and `miniTabstripPanel`
+#'   has an `id`, then the tab's title will be used as the value.
+#' @param icon Icon to appear on the tab; see [shiny::icon()].
 #' @rdname miniTabstripPanel
 #' @export
 miniTabPanel <- function(title, ..., value = title, icon = NULL) {
@@ -109,19 +109,19 @@ gadgetDependencies <- function() {
 #' Create a title bar
 #'
 #' Creates a title bar for a Shiny app or Shiny Gadget. Intended to be used with
-#' \code{\link{miniPage}}. Title bars contain a title, and optionally, a
-#' \code{miniTitleBarButton} on the left and/or right sides.
+#' [miniPage()]. Title bars contain a title, and optionally, a
+#' `miniTitleBarButton` on the left and/or right sides.
 #'
 #' @param title The title of the gadget. If this needs to be dynamic, pass
-#'   \code{\link[shiny:textOutput]{textOutput}} with \code{inline = TRUE}.
-#' @param left The \code{miniTitleBarButton} to put on the left, or \code{NULL}
+#'   [shiny::textOutput()] with `inline = TRUE`.
+#' @param left The `miniTitleBarButton` to put on the left, or `NULL`
 #'   for none.
-#' @param right The \code{miniTitleBarButton} to put on the right, or
-#'   \code{NULL} for none.
+#' @param right The `miniTitleBarButton` to put on the right, or
+#'   `NULL` for none.
 #'
 #' @seealso For more information, see the
-#'   \href{http://shiny.rstudio.com/articles/gadget-ui.html}{Designing
-#'   Gadget UI} article on shiny.rstudio.com.
+#'   [Designing Gadget UI](http://shiny.rstudio.com/articles/gadget-ui.html)
+#'   article on shiny.rstudio.com.
 #'
 #' @examples
 #' miniTitleBar("My App",
@@ -146,11 +146,11 @@ miniTitleBar <- function(title, left = NULL, right = NULL) {
   )
 }
 
-#' @details \code{gadgetTitleBar} is a \code{miniTitleBar} with different
+#' @details `gadgetTitleBar` is a `miniTitleBar` with different
 #'   defaults: a Cancel button on the left and a Done button on the right. By
-#'   default, \code{\link[shiny:runGadget]{runGadget}} will handle the Cancel button by
-#'   closing the gadget and raising an error, but the \code{Done} button must be
-#'   handled by the gadget author using \code{observeEvent(input$done, {...})}.
+#'   default, [shiny::runGadget()] will handle the Cancel button by
+#'   closing the gadget and raising an error, but the `Done` button must be
+#'   handled by the gadget author using `observeEvent(input$done, {...})`.
 #' @rdname miniTitleBar
 #' @export
 gadgetTitleBar <- function(title, left = miniTitleBarCancelButton(),
@@ -159,9 +159,9 @@ gadgetTitleBar <- function(title, left = miniTitleBarCancelButton(),
   miniTitleBar(title, left, right)
 }
 
-#' @param inputId The \code{input} slot that will be used to access the button.
+#' @param inputId The `input` slot that will be used to access the button.
 #' @param label The text label to display on the button.
-#' @param primary If \code{TRUE}, render the button in a bold color to indicate
+#' @param primary If `TRUE`, render the button in a bold color to indicate
 #'   that it is the primary action of the gadget.
 #' @rdname miniTitleBar
 #' @export
@@ -182,7 +182,7 @@ miniTitleBarButton <- function(inputId, label, primary = FALSE) {
   )
 }
 
-#' @details \code{miniTitleBarCancelButton} is like \code{miniTitleBarButton},
+#' @details `miniTitleBarCancelButton` is like `miniTitleBarButton`,
 #'   but the user can also invoke it by hitting the Escape key.
 #' @rdname miniTitleBar
 #' @export
@@ -212,24 +212,24 @@ scrollPanel <- function(...) {
 #' Create a content panel
 #'
 #' Creates a panel for containing arbitrary content within a flex box container.
-#' This is mainly useful within \code{\link{miniPage}} or a
-#' \code{\link{miniTabPanel}}. You can use \code{miniContentPanel} to introduce
+#' This is mainly useful within [miniPage()] or a
+#' [miniTabPanel()]. You can use `miniContentPanel` to introduce
 #' padding and/or scrolling, but even if padding/scrolling aren't needed, it's a
-#' good idea to wrap your custom content into \code{miniContentPanel} as it
+#' good idea to wrap your custom content into `miniContentPanel` as it
 #' fixes some odd behavior with percentage-based heights.
 #'
-#' @param ... UI objects to be contained in the \code{miniContentPanel}. A
-#'   single htmlwidget or \code{\link[shiny:plotOutput]{plotOutput}} with
-#'   \code{height="100\%"} works well, as do
-#'   \code{\link[shiny:fillRow]{fillRow}}/\code{\link[shiny:fillCol]{fillCol}}.
+#' @param ... UI objects to be contained in the `miniContentPanel`. A
+#'   single htmlwidget or [shiny::plotOutput()] with
+#'   `height="100%"` works well, as do
+#'   [shiny::fillRow()]/[shiny::fillCol()].
 #' @param padding Amount of padding to apply. Can be numeric (in pixels) or
-#'   character (e.g. \code{"3em"}).
-#' @param scrollable If \code{TRUE}, then content large enough to overflow the
-#'   \code{miniContentPanel} will make scrollbars appear.
+#'   character (e.g. `"3em"`).
+#' @param scrollable If `TRUE`, then content large enough to overflow the
+#'   `miniContentPanel` will make scrollbars appear.
 #'
 #' @seealso For more information, see the
-#'   \href{http://shiny.rstudio.com/articles/gadget-ui.html}{Designing
-#'   Gadget UI} article on shiny.rstudio.com.
+#'   [Designing Gadget UI](http://shiny.rstudio.com/articles/gadget-ui.html)
+#'   article on shiny.rstudio.com.
 #'
 #' @examples
 #' library(shiny)
@@ -278,18 +278,18 @@ paddingToPos <- function(padding) {
 #' Creates a full-width container for one or more buttons. The horizontal space
 #' will be evenly divided among any buttons that are added.
 #'
-#' When using \code{miniButtonBlock} with a \code{miniTabstripPanel}, consider
-#' passing the \code{miniButtonBlock} to \code{miniTabstripPanel} as the
-#' \code{between} argument.
+#' When using `miniButtonBlock` with a `miniTabstripPanel`, consider
+#' passing the `miniButtonBlock` to `miniTabstripPanel` as the
+#' `between` argument.
 #'
-#' @param ... One or more \code{\link[shiny:actionButton]{actionButton}} or
-#'   \code{\link[shiny:downloadButton]{downloadButton}} objects.
-#' @param border Zero or more of \code{c("top", "bottom")}, indicating which
+#' @param ... One or more [shiny::actionButton()] or
+#'   [shiny::downloadButton()] objects.
+#' @param border Zero or more of `c("top", "bottom")`, indicating which
 #'   sides should have borders, if any.
 #'
 #' @seealso For more information, see the
-#'   \href{http://shiny.rstudio.com/articles/gadget-ui.html}{Designing
-#'   Gadget UI} article on shiny.rstudio.com.
+#'   [Designing Gadget UI](http://shiny.rstudio.com/articles/gadget-ui.html)
+#'   article on shiny.rstudio.com.
 #'
 #' @examples
 #' library(shiny)

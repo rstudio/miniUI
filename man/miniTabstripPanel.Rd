@@ -14,10 +14,10 @@ miniTabPanel(title, ..., value = title, icon = NULL)
 include in the tabset. For \code{miniTabPanel}, UI elements to include
 within the tab.}
 
-\item{id}{If provided, you can use \code{input$}\emph{\code{id}} in your
+\item{id}{If provided, you can use \code{input$id} in your
 server logic to determine which of the current tabs is active. The value
 will correspond to the \code{value} argument that is passed to
-\code{\link{miniTabPanel}}.}
+\code{\link[=miniTabPanel]{miniTabPanel()}}.}
 
 \item{selected}{The \code{value} (or, if none was supplied, the \code{title})
 of the tab that should be selected by default. If \code{NULL}, the first
@@ -32,12 +32,12 @@ content (above) and tabstrip (below).}
 reports that this tab is selected. If omitted and \code{miniTabstripPanel}
 has an \code{id}, then the tab's title will be used as the value.}
 
-\item{icon}{Icon to appear on the tab; see \code{\link[shiny:icon]{icon}}.}
+\item{icon}{Icon to appear on the tab; see \code{\link[shiny:icon]{shiny::icon()}}.}
 }
 \description{
 \code{miniTabstripPanel} is a tabstrip panel that contains
 \code{miniTabPanel} elements. Similar to
-\code{\link[shiny:tabsetPanel]{tabsetPanel}}, but optimized for small page
+\code{\link[shiny:tabsetPanel]{shiny::tabsetPanel()}}, but optimized for small page
 sizes like mobile devices or the RStudio Viewer pane.
 }
 \examples{
@@ -54,6 +54,6 @@ miniTabstripPanel(
 }
 \seealso{
 For more information, see the
-  \href{http://shiny.rstudio.com/articles/gadget-ui.html}{Designing
-  Gadget UI} article on shiny.rstudio.com.
+\href{http://shiny.rstudio.com/articles/gadget-ui.html}{Designing Gadget UI}
+article on shiny.rstudio.com.
 }

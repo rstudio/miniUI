@@ -7,8 +7,8 @@
 miniButtonBlock(..., border = "top")
 }
 \arguments{
-\item{...}{One or more \code{\link[shiny:actionButton]{actionButton}} or
-\code{\link[shiny:downloadButton]{downloadButton}} objects.}
+\item{...}{One or more \code{\link[shiny:actionButton]{shiny::actionButton()}} or
+\code{\link[shiny:downloadButton]{shiny::downloadButton()}} objects.}
 
 \item{border}{Zero or more of \code{c("top", "bottom")}, indicating which
 sides should have borders, if any.}
@@ -33,6 +33,6 @@ miniButtonBlock(
 }
 \seealso{
 For more information, see the
-  \href{http://shiny.rstudio.com/articles/gadget-ui.html}{Designing
-  Gadget UI} article on shiny.rstudio.com.
+\href{http://shiny.rstudio.com/articles/gadget-ui.html}{Designing Gadget UI}
+article on shiny.rstudio.com.
 }

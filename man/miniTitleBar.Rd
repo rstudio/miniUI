@@ -21,7 +21,7 @@ miniTitleBarCancelButton(inputId = "cancel", label = "Cancel", primary = FALSE)
 }
 \arguments{
 \item{title}{The title of the gadget. If this needs to be dynamic, pass
-\code{\link[shiny:textOutput]{textOutput}} with \code{inline = TRUE}.}
+\code{\link[shiny:textOutput]{shiny::textOutput()}} with \code{inline = TRUE}.}
 
 \item{left}{The \code{miniTitleBarButton} to put on the left, or \code{NULL}
 for none.}
@@ -38,18 +38,18 @@ that it is the primary action of the gadget.}
 }
 \description{
 Creates a title bar for a Shiny app or Shiny Gadget. Intended to be used with
-\code{\link{miniPage}}. Title bars contain a title, and optionally, a
+\code{\link[=miniPage]{miniPage()}}. Title bars contain a title, and optionally, a
 \code{miniTitleBarButton} on the left and/or right sides.
 }
 \details{
 \code{gadgetTitleBar} is a \code{miniTitleBar} with different
-  defaults: a Cancel button on the left and a Done button on the right. By
-  default, \code{\link[shiny:runGadget]{runGadget}} will handle the Cancel button by
-  closing the gadget and raising an error, but the \code{Done} button must be
-  handled by the gadget author using \code{observeEvent(input$done, {...})}.
+defaults: a Cancel button on the left and a Done button on the right. By
+default, \code{\link[shiny:runGadget]{shiny::runGadget()}} will handle the Cancel button by
+closing the gadget and raising an error, but the \code{Done} button must be
+handled by the gadget author using \code{observeEvent(input$done, {...})}.
 
 \code{miniTitleBarCancelButton} is like \code{miniTitleBarButton},
-  but the user can also invoke it by hitting the Escape key.
+but the user can also invoke it by hitting the Escape key.
 }
 \examples{
 miniTitleBar("My App",
@@ -60,6 +60,6 @@ miniTitleBar("My App",
 }
 \seealso{
 For more information, see the
-  \href{http://shiny.rstudio.com/articles/gadget-ui.html}{Designing
-  Gadget UI} article on shiny.rstudio.com.
+\href{http://shiny.rstudio.com/articles/gadget-ui.html}{Designing Gadget UI}
+article on shiny.rstudio.com.
 }
