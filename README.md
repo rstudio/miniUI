@@ -12,7 +12,7 @@ devtools::install_github("rstudio/miniUI")
 
 ### Getting started
 
-Check out the [Designing Gadget UI](http://shiny.rstudio.com/articles/gadget-ui.html) article on [shiny.rstudio.com](http://shiny.rstudio.com/).
+Check out the [Designing Gadget UI](https://shiny.posit.co/articles/gadget-ui.html) article on [shiny.posit.co](https://shiny.posit.co/).
 
 
 ### Example
@@ -54,11 +54,11 @@ Full source at: https://github.com/rstudio/miniUI/blob/master/examples/tabs.R
 
 ### License
 
-The miniUI package is licensed under the [GPLv3](http://www.gnu.org/licenses/gpl-3.0.en.html).
+The miniUI package is licensed under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html).
 
 ---
 
-### Compiling [Less](http://lesscss.org/) source to CSS
+### Compiling [Less](https://lesscss.org/) source to CSS
 
 **You generally don't need to do this.** This build step is only needed if you want to contribute to the development of the package by modifying the built-in CSS styles.
 
