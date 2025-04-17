@@ -16,7 +16,7 @@ shown in the document).}
 }
 \description{
 Designed to serve as the outermost function call for your gadget UI. Similar
-to \code{\link[shiny]{fillPage}}, but always includes the Bootstrap CSS
+to \code{\link[shiny:fillPage]{fillPage}}, but always includes the Bootstrap CSS
 library, and is designed to contain \code{\link{miniTitleBar}},
 \code{\link{miniTabstripPanel}}, \code{\link{miniContentPanel}}, etc.
 }
@@ -25,4 +25,3 @@ For more information, see the
   \href{http://shiny.rstudio.com/articles/gadget-ui.html}{Designing
   Gadget UI} article on shiny.rstudio.com.
 }
-

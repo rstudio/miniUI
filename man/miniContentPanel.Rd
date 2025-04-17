@@ -8,9 +8,9 @@ miniContentPanel(..., padding = 15, scrollable = TRUE)
 }
 \arguments{
 \item{...}{UI objects to be contained in the \code{miniContentPanel}. A
-single htmlwidget or \code{\link[shiny]{plotOutput}} with
+single htmlwidget or \code{\link[shiny:plotOutput]{plotOutput}} with
 \code{height="100\%"} works well, as do
-\code{\link[shiny]{fillRow}}/\code{\link[shiny]{fillCol}}.}
+\code{\link[shiny:fillRow]{fillRow}}/\code{\link[shiny:fillCol]{fillCol}}.}
 
 \item{padding}{Amount of padding to apply. Can be numeric (in pixels) or
 character (e.g. \code{"3em"}).}
@@ -39,4 +39,3 @@ For more information, see the
   \href{http://shiny.rstudio.com/articles/gadget-ui.html}{Designing
   Gadget UI} article on shiny.rstudio.com.
 }
-

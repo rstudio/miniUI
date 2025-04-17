@@ -4,7 +4,7 @@ NULL
 #' Page function for Shiny Gadgets
 #'
 #' Designed to serve as the outermost function call for your gadget UI. Similar
-#' to \code{\link[shiny]{fillPage}}, but always includes the Bootstrap CSS
+#' to \code{\link[shiny:fillPage]{fillPage}}, but always includes the Bootstrap CSS
 #' library, and is designed to contain \code{\link{miniTitleBar}},
 #' \code{\link{miniTabstripPanel}}, \code{\link{miniContentPanel}}, etc.
 #'
@@ -34,9 +34,9 @@ miniPage <- function(..., title = NULL, theme = NULL) {
 #' Create a tabstrip panel
 #'
 #' \code{miniTabstripPanel} is a tabstrip panel that contains
-#' \code{miniTabPanel} elements. Similar to \code{\link[=shiny]{tabsetPanel}},
-#' but optimized for small page sizes like mobile devices or the RStudio Viewer
-#' pane.
+#' \code{miniTabPanel} elements. Similar to
+#' \code{\link[shiny:tabsetPanel]{tabsetPanel}}, but optimized for small page
+#' sizes like mobile devices or the RStudio Viewer pane.
 #'
 #' @param ... For \code{miniTabstripPanel}, \code{miniTabPanel} elements to
 #'   include in the tabset. For \code{miniTabPanel}, UI elements to include
@@ -86,7 +86,7 @@ miniTabstripPanel <- function(..., id = NULL, selected = NULL, between = NULL) {
 #' @param value The value that should be sent when \code{miniTabstripPanel}
 #'   reports that this tab is selected. If omitted and \code{miniTabstripPanel}
 #'   has an \code{id}, then the tab's title will be used as the value.
-#' @param icon Icon to appear on the tab; see \code{\link[shiny]{icon}}.
+#' @param icon Icon to appear on the tab; see \code{\link[shiny:icon]{icon}}.
 #' @rdname miniTabstripPanel
 #' @export
 miniTabPanel <- function(title, ..., value = title, icon = NULL) {
@@ -113,7 +113,7 @@ gadgetDependencies <- function() {
 #' \code{miniTitleBarButton} on the left and/or right sides.
 #'
 #' @param title The title of the gadget. If this needs to be dynamic, pass
-#'   \code{\link[=shiny]{textOutput}} with \code{inline = TRUE}.
+#'   \code{\link[shiny:textOutput]{textOutput}} with \code{inline = TRUE}.
 #' @param left The \code{miniTitleBarButton} to put on the left, or \code{NULL}
 #'   for none.
 #' @param right The \code{miniTitleBarButton} to put on the right, or
@@ -148,7 +148,7 @@ miniTitleBar <- function(title, left = NULL, right = NULL) {
 
 #' @details \code{gadgetTitleBar} is a \code{miniTitleBar} with different
 #'   defaults: a Cancel button on the left and a Done button on the right. By
-#'   default, \code{\link[shiny]{runGadget}} will handle the Cancel button by
+#'   default, \code{\link[shiny:runGadget]{runGadget}} will handle the Cancel button by
 #'   closing the gadget and raising an error, but the \code{Done} button must be
 #'   handled by the gadget author using \code{observeEvent(input$done, {...})}.
 #' @rdname miniTitleBar
@@ -219,9 +219,9 @@ scrollPanel <- function(...) {
 #' fixes some odd behavior with percentage-based heights.
 #'
 #' @param ... UI objects to be contained in the \code{miniContentPanel}. A
-#'   single htmlwidget or \code{\link[shiny]{plotOutput}} with
+#'   single htmlwidget or \code{\link[shiny:plotOutput]{plotOutput}} with
 #'   \code{height="100\%"} works well, as do
-#'   \code{\link[shiny]{fillRow}}/\code{\link[shiny]{fillCol}}.
+#'   \code{\link[shiny:fillRow]{fillRow}}/\code{\link[shiny:fillCol]{fillCol}}.
 #' @param padding Amount of padding to apply. Can be numeric (in pixels) or
 #'   character (e.g. \code{"3em"}).
 #' @param scrollable If \code{TRUE}, then content large enough to overflow the
@@ -282,8 +282,8 @@ paddingToPos <- function(padding) {
 #' passing the \code{miniButtonBlock} to \code{miniTabstripPanel} as the
 #' \code{between} argument.
 #'
-#' @param ... One or more \code{\link[=shiny]{actionButton}} or
-#'   \code{\link[=shiny]{downloadButton}} objects.
+#' @param ... One or more \code{\link[shiny:actionButton]{actionButton}} or
+#'   \code{\link[shiny:downloadButton]{downloadButton}} objects.
 #' @param border Zero or more of \code{c("top", "bottom")}, indicating which
 #'   sides should have borders, if any.
 #'
