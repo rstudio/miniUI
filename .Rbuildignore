@@ -6,3 +6,4 @@
 ^tools/package.json$
 ^tools/node_modules$
 ^.*\.o$
+^cran-comments\.md$
