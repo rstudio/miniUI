@@ -4,4 +4,5 @@
 ^examples$
 ^tools/Gruntfile.js$
 ^tools/package.json$
+^tools/node_modules$
 ^.*\.o$
