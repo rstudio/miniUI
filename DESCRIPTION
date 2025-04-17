@@ -3,8 +3,9 @@ Type: Package
 Title: Shiny UI Widgets for Small Screens
 Version: 0.1.2
 Authors@R: c(
-    person("Joe", "Cheng", role = c("cre", "aut"), email = "joe@rstudio.com"),
-    person(family = "RStudio", role = "cph")
+    person("Joe", "Cheng", role = c("cre", "aut"), email = "joe@posit.co"),
+    person("Posit Software, PBC", role = c("cph", "fnd"),
+           comment = c(ROR = "03wc8by49"))
     )
 Description: Provides UI widget and layout functions for writing Shiny apps
     that work well on small screens.
